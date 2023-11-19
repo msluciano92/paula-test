@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>programming.dev - A collection of programming communities</title>
+    <meta data-inferno-helmet="true" property="title" content="programming.dev - A collection of programming communities"><meta data-inferno-helmet="true" property="og:title" content="programming.dev - A collection of programming communities"><meta data-inferno-helmet="true" property="twitter:title" content="programming.dev - A collection of programming communities"><meta data-inferno-helmet="true" property="og:type" content="website"><meta data-inferno-helmet="true" property="twitter:card" content="summary_large_image">
+  
+    <!-- Required meta tags -->
+    <meta name="Description" content="Lemmy">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link id="favicon" rel="shortcut icon" type="image/x-icon" href="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png">
+  
+    <!-- Web app manifest -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/static/68330f7/assets/icons/apple-touch-icon.png">
+    <link rel="apple-touch-startup-image" href="/static/68330f7/assets/icons/apple-touch-icon.png">
+  
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  
+    <!-- Current theme and more -->
+    <link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="/static/litely.css" id="default-light" media="(prefers-color-scheme: light)"><link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="/static/darkly.css" id="default-dark" media="(prefers-color-scheme: no-preference), (prefers-color-scheme: dark)"><link data-inferno-helmet="true" rel="canonical" href="https://programming.dev/">
+    
+    <meta property="og:url" content="https://programming.dev/" data-inferno-helmet="true"><meta property="twitter:url" content="https://programming.dev/" data-inferno-helmet="true"></head>
+    {% load bootstrap5 %}
+    {% bootstrap_javascript %} 
+</head>
+<body>
+    
+    <div id="root">
+        {% load socialaccount %}
+        <div class="lemmy-site" id="app" data-bs-theme="light">
+            <button class="btn skip-link bg-light position-absolute start-0 z-3" type="button">Saltar al contenido</button>
+            <div class="shadow-sm">
+                <nav class="navbar navbar-expand-md navbar-light p-0 px-3 container-lg" id="navbar">
+                    <a class="d-flex align-items-center navbar-brand me-md-3 active" aria-current="true" style="" id="navTitle" title="A collection of programming communities" href="/">
+                        <picture>
+                            <source srcset="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png?format=webp&amp;thumbnail=96" type="image/webp">
+                            <source srcset="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png">
+                            <source srcset="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png?format=jpg&amp;thumbnail=96" type="image/jpeg">
+                            <img class="overflow-hidden pictrs-image object-fit-cover img-icon me-1" src="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png" alt="" title="" loading="lazy">
+                        </picture>
+                        programming.dev
+                    </a>
+                    <ul class="navbar-nav d-flex flex-row ms-auto d-md-none">
+                        <li class="nav-item nav-item-icon" id="navMessages">
+                            <a class="p-1 nav-link border-0 nav-messages" title="0 Mensajes no leídos" href="/inbox">
+                                <svg class="icon"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-bell"></use>
+                                    <div class="visually-hidden"><title>bell</title></div>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler border-0 p-1" type="button" aria-label="menu" data-tippy-content="Expandir aquí" data-bs-toggle="collapse" data-bs-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false"><svg class="icon"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-menu"></use><div class="visually-hidden"><title>menu</title></div></svg></button><div class="collapse navbar-collapse my-2" id="navbarDropdown"><ul class="me-auto navbar-nav" id="navbarLinks"><li class="nav-item"><a class="nav-link" title="Comunidades" href="/communities/local">Comunidades</a></li><li class="nav-item"><a class="nav-link" title="Crear publicación" href="/create_posts">Crear publicación</a></li><li class="nav-item"><a class="nav-link d-inline-flex align-items-center d-md-inline-block" title="Apoya a Lemmy" href="https://join-lemmy.org/donate"><svg class="icon small"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-heart"></use><div class="visually-hidden"><title>heart</title></div></svg><span class="d-inline ms-1 d-md-none ms-md-0">Apoya a Lemmy</span></a></li></ul>
+                    <ul class="navbar-nav" id="navbarIcons">
+                        <li class="nav-item" id="navSearch"><a class="nav-link d-inline-flex align-items-center d-md-inline-block" title="Buscar" href="/search"><svg class="icon"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-search"></use><div class="visually-hidden"><title>search</title></div></svg><span class="d-inline ms-1 d-md-none ms-md-0">Buscar</span></a></li>
+                        <li class="nav-item" id="navMessages"><a class="nav-link d-inline-flex align-items-center d-md-inline-block" title="0 Mensajes no leídos" href="/inbox"><svg class="icon"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-bell"></use><div class="visually-hidden"><title>bell</title></div></svg><span class="badge text-bg-light d-inline ms-1 d-md-none ms-md-0">0 Mensajes no leídos</span></a></li>
+                        <li class="dropdown" id="dropdownUser">
+                            {% if isUser %}
+                                <button class="btn dropdown-toggle" type="button" aria-expanded="false" data-bs-toggle="dropdown">{{user.username}}</button>
+                                <ul class="dropdown-menu" style="min-width:fit-content;">
+                                    <li><a class="dropdown-item px-2" title="Perfil" href="/u/{{user.username}}/resumen/-created_date"><svg class="icon me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-user"></use><div class="visually-hidden"><title>user</title></div></svg>Perfil</a></li>
+                                    <li><a class="dropdown-item px-2" title="Configuración" href="/edit_profile"><svg class="icon me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-settings"></use><div class="visually-hidden"><title>settings</title></div></svg>Configuración</a></li>
+                                    <li><a class="dropdown-item px-2" title="Cerrar sesión" href="/logout"><svg class="icon me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-log-out"></use><div class="visually-hidden"><title>log-out</title></div></svg>Cerrar sesión</a></li>
+                                </ul>
+                            {% else %}
+                                <a href="{% provider_login_url 'google' action='reauthenticate' %}">Sign in with Google</a>
+                            {% endif %}    
+                        </li>
+                    </ul></div></nav></div>
+    <div class="mt-4 p-0 fl-1">
+        <div tabindex="-1">
+            <div class="create-post container-lg">
+                <div class="row">
+                    <div class="col-12 col-lg-6 offset-lg-3 mb-4" id="createPostForm">
+                        <h1 class="h4 mb-4">Editar perfil</h1>
+                        <form class="" method="POST" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            
+                            <button class="btn btn-secondary me-2" type="submit">Actualizar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+   

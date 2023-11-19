@@ -1,0 +1,20 @@
+{% extends "navigation.html" %}
+{% block content %}
+        <div class="mt-4 p-0 fl-1">
+        <div tabindex="-1">
+            <div class="create-post container-lg">
+                <div class="row">
+                    <div class="col-12 col-lg-6 offset-lg-3 mb-4" id="createPostForm">
+                        <h1 class="h4 mb-4">Crear comunidad</h1>
+                        <form class="" method="POST" action="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            
+                            <button class="btn btn-secondary me-2" type="submit">Crear</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}                   
+                     

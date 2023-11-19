@@ -1,0 +1,20 @@
+{%extends "navigation.html"%}
+{% block content %}
+<div class="style-268">
+    <form class="style-269" method="post" action="{% url 'edit_comment' comment.post.id comment.id %}">
+        {% csrf_token %}
+        <p>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Edit Comment</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name="body" cols="40" rows="4"
+                 required="" minlength="3" maxlength="200" id="id_body">{{ comment.body }}</textarea>
+            </div>
+        </p>
+        <div class="style-270">
+            <div class="style-350">
+                <div class="style-355"></div><input class="btn btn-primary btn-block" type="submit" value="Edit">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

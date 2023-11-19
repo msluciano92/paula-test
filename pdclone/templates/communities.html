@@ -1,0 +1,76 @@
+{% extends "navigation.html" %}
+{% block content %} 
+    <div class="mt-4 p-0 fl-1">
+        <div tabindex="-1">
+            <div class="communities container-lg">
+                <div>
+                    <h1 class="h4 mb-4">Lista de comunidades</h1>
+                    <div class="row g-2 justify-content-between">
+                        <div class="col-auto">
+                            <div class="listing-type-select btn-group btn-group-toggle flex-wrap" role="group">
+                                {% if local %}
+                                    <a class="btn btn-outline-secondary" id="listing-type-input-yUSaxMZvyqII3mW15N9f-subscribed" href="/communities/suscrito">Suscrito</a>
+                                    <a class="btn btn-outline-secondary active" id="listing-type-input-yUSaxMZvyqII3mW15N9f-local" href="/communities/local">Local</a>
+                                {% else %}
+                                    <a class="btn btn-outline-secondary active" id="listing-type-input-yUSaxMZvyqII3mW15N9f-subscribed" href="/communities/suscrito">Suscrito</a>
+                                    <a class="btn btn-outline-secondary" id="listing-type-input-yUSaxMZvyqII3mW15N9f-local" href="/communities/local">Local</a>
+                                {% endif %}
+                              </div>
+                        </div>
+                        <div class="col-auto">
+                                <div class="col-auto"><label class="visually-hidden" for="communities-search">Crear comunidad</label>
+                                    
+                                    <a href ="/create_community" class="btn btn-secondary"><span>Crear comunidad</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover" id="community_table">
+                                <thead class="pointer">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th class="text-right">Suscriptores</th>
+                                        <th class="text-right d-none d-lg-table-cell">Publicaciones</th>
+                                        <th class="text-right d-none d-lg-table-cell">Comentarios</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                {% for community in communities %}
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <a class="community-link " title="!{{community.0.name}}" href="/c/{{community.0.id}}/posts/created_date">
+                                                    {% if community.0.avatar is not None and community.0.avatar %}
+                                                    <img class="overflow-hidden pictrs-image object-fit-cover img-icon me-1" src="{{community.0.avatar.url}}" alt="" title="" loading="lazy">
+                                                    {% endif %}
+                                                    <span class="overflow-wrap-anywhere">{{community.0.name}}</span>
+                                                </a>
+                                            </td>
+                                            <td class="text-right">{{community.0.subscribers.count}}</td>
+                                            <td class="text-right d-none d-lg-table-cell">{{community.2}}</td>
+                                            <td class="text-right d-none d-lg-table-cell">{{community.3}}</td>
+                                            <td class="text-right">
+                                                {% if user.is_authenticated %}
+                                                    {% if community.1 %}
+                                                    <button class="btn btn-link d-inline-block"><a href="/unsubscribe/{{community.0.id}}">Desuscribirse</a></button>
+                                                    {% else %}
+                                                    <button class="btn btn-link d-inline-block"><a href="/subscribe/{{community.0.id}}">Suscribirse</a></button>
+                                                    {% endif %}
+                                                {% else %}
+                                                <button class="btn btn-link d-inline-block" disabled>Suscribirse</button>
+                                                {% endif %}
+                                                
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</html>
+{% endblock %}

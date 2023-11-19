@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Eliminación</title>
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="../../../static/single_post.css" />
+  
+    <!-- Current theme and more -->
+    <link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="../../../static/litely.css" id="default-light" media="(prefers-color-scheme: light)">
+    <link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="../../../static/darkly.css" id="default-dark" media="(prefers-color-scheme: no-preference), (prefers-color-scheme: dark)">
+
+</head>
+<body style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
+    <h1 class="style-102">Confirmar Eliminación</h1>
+    <p>¿Estás seguro de que quieres eliminar el post "{{ post.title }}"?</p>
+    <form class="style-269vis" method="post" action="{% url 'eliminar_post' post.id %}">
+        {% csrf_token %}
+        <button class="style-243vis" type="submit">Sí, eliminar</button>
+        <a class="style-243vis2" href="{% url 'single_post' post.id%}">Cancelar</a>
+    </form>
+</body>
+</html>

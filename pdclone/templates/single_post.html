@@ -1,0 +1,508 @@
+<html lang="en">
+    <head>
+  
+    <!-- A remote debugging utility for mobile -->
+    
+  
+    <!-- Custom injected script -->
+    
+  
+    <title data-inferno-helmet="true">{{post.title}} - programming.dev</title>
+    <meta data-inferno-helmet="true" property="title" content="Create Post - programming.dev"><meta data-inferno-helmet="true" property="og:title" content="Create Post - programming.dev"><meta data-inferno-helmet="true" property="twitter:title" content="Create Post - programming.dev"><meta data-inferno-helmet="true" property="og:url" content="http://programming.dev/create_post"><meta data-inferno-helmet="true" property="twitter:url" content="http://programming.dev/create_post"><meta data-inferno-helmet="true" property="og:type" content="website"><meta data-inferno-helmet="true" property="twitter:card" content="summary_large_image">
+  
+    <!-- Required meta tags -->
+    <meta name="Description" content="Lemmy">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link
+       id="favicon"
+       rel="shortcut icon"
+       type="image/x-icon"
+       href=https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png
+     />
+  
+    <!-- Web app manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href=/static/68330f7/assets/icons/apple-touch-icon.png />
+    <link rel="apple-touch-startup-image" href=/static/68330f7/assets/icons/apple-touch-icon.png />
+  
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="../../static/single_post.css" />
+  
+    <!-- Current theme and more -->
+    <link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="../../static/litely.css" id="default-light" media="(prefers-color-scheme: light)">
+    <link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="../../static/darkly.css" id="default-dark" media="(prefers-color-scheme: no-preference), (prefers-color-scheme: dark)">
+
+    
+    </head>
+{% load bootstrap5 %}
+{% bootstrap_javascript %}
+<body class="style-0">
+    {% load socialaccount %}
+    <div class="style-2">
+        <div class="style-3" data-bs-theme="dark"><button class="style-4" type="button">Jump to content</button>
+            <div class="style-5">
+                <nav class="style-6"><a class="style-7" aria-current="true" title="A collection of programming communities" href="/">
+                        <picture class="style-8">
+                            <source srcset="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png?format=webp&amp;thumbnail=96" type="image/webp" class="style-9" />
+                            <source srcset="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png" class="style-10" />
+                            <source srcset="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png?format=jpg&amp;thumbnail=96" type="image/jpeg" class="style-11" /><img class="style-12" src="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png" alt="" title="" loading="lazy" />
+                        </picture>programming.dev
+                    </a>
+                    <ul class="style-13">
+                        <li class="style-14"><a class="style-15" title="0 Unread Messages" href="/inbox"><svg class="style-16">
+                                    <use xlink:href="/static/68330f7/assets/symbols.svg#icon-bell" class="style-17"></use>
+                                    <div class="style-18">
+                                        <title class="style-19">bell</title>
+                                 
+                                    </div>
+                                </svg></a></li>
+                    </ul><button class="style-20" type="button" aria-label="menu" data-tippy-content="Expand here" data-bs-toggle="collapse" data-bs-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false"><svg class="style-21">
+                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-menu" class="style-22"></use>
+                            <div class="style-23">
+                                <title class="style-24">menu</title>
+                            </div>
+                        </svg></button>
+                    <div class="style-25">
+                        <ul class="style-26">
+                            <li class="style-27"><a class="style-28" title="Communities" href="/communities/local">Comunidades</a></li>
+                            <li class="style-29"><a class="style-30" title="Create Post" href="/create_posts">Crear publicación</a></li>
+                            <li class="style-31"><a class="style-32" title="Support Lemmy" href="https://join-lemmy.org/donate"><svg class="style-33">
+                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-heart" class="style-34"></use>
+                                        <div class="style-35">
+                                            <title class="style-36">heart</title>
+                                        </div>
+                                    </svg><span class="style-37">Support Lemmy</span></a></li>
+                        </ul>
+                        <ul class="style-38">
+                            <li class="style-39"><a class="style-40" title="Search" href="/search"><svg class="style-41">
+                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-search" class="style-42"></use>
+                                        <div class="style-43">
+                                            <title class="style-44">search</title>
+                                        </div>
+                                    </svg><span class="style-45">Search</span></a></li>
+                            <li class="style-46"><a class="style-47" title="0 Unread Messages" href="/inbox"><svg class="style-48">
+                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-bell" class="style-49"></use>
+                                        <div class="style-50">
+                                            <title class="style-51">bell</title>
+                                        </div>
+                                    </svg><span class="style-52">0 Unread Messages</span></a></li>
+                                    {% if user.is_authenticated %}
+                                    <button class="btn dropdown-toggle" type="button" aria-expanded="false" data-bs-toggle="dropdown">{{user.username}}</button>
+                                    <ul class="dropdown-menu" style="min-width:fit-content;">
+                                        <li><a class="dropdown-item px-2" title="Perfil" href="/u/{{user.username}}/resumen/-created_date"><svg class="icon me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-user"></use><div class="visually-hidden"><title>user</title></div></svg>Perfil</a></li>
+                                        <li><a class="dropdown-item px-2" title="Configuración" href="/settings"><svg class="icon me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-settings"></use><div class="visually-hidden"><title>settings</title></div></svg>Configuración</a></li>
+                                        <li><a class="dropdown-item px-2" title="Cerrar sesión" href="/logout"><svg class="icon me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-log-out"></use><div class="visually-hidden"><title>log-out</title></div></svg>Cerrar sesión</a></li>
+                                    </ul>
+                                     {% else %}
+                                    <a href="{% provider_login_url 'google' action='reauthenticate' %}">Sign in with Google</a>
+                                    {% endif %} 
+                                    <li class="style-68">
+                                        <hr class="style-69" />
+                                    </li>
+                                   <!-- <li class="style-70"><button class="style-71"><svg class="style-72">
+                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-log-out" class="style-73"></use>
+                                                <div class="style-74">
+                                                    <title class="style-75">log-out</title>
+                                                </div>
+                                            </svg>Logout</button></li>-->
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="style-76">
+                <div tabindex="-1" class="style-77">
+                    <div class="style-78">
+                        <div class="style-79">
+                            <main class="style-80">
+                                <div class="style-81">
+                                    <div class="style-82">
+                                        <article class="style-83">
+                                            <div class="style-84">
+                                                <div class="style-85"><a class="style-86" title="@meter_kilo@lemm.ee" href="'u/{{post.author.username}}">
+                                                        <picture class="style-87">
+                                                            <source srcset="/static/68330f7/assets/icons/icon-96x96.png" type="image/webp" class="style-88" />
+                                                            <source srcset="/static/68330f7/assets/icons/icon-96x96.png" class="style-89" />
+                                                            <source srcset="/static/68330f7/assets/icons/icon-96x96.png" type="image/jpeg" class="style-90" /><img class="style-91" src="/static/68330f7/assets/icons/icon-96x96.png" alt="" title="" loading="lazy" />
+                                                        </picture><span class="style-92">@{{post.author.username}}</span>
+                                                    </a> to <a class="style-93" title="!programming" href="/community">
+                                                        <picture class="style-94">
+                                                            <source srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png?format=webp&amp;thumbnail=96" type="image/webp" class="style-95" />
+                                                            <source srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png" class="style-96" />
+                                                            <source srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png?format=jpg&amp;thumbnail=96" type="image/jpeg" class="style-97" /><img class="style-98" src="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png" alt="" title="" loading="lazy" />
+                                                        </picture><span class="style-99">{{post.community.name}}</span>
+                                                    </a> • <span class="style-100" data-tippy-content="Tuesday, October 31st, 2023 at 1:47:11 AM GMT+01:00"></span></div>
+                                                <div class="style-101">
+                                                    <h1 class="style-102"><a class="style-103" title="Comments" href="/post/{{post.id}}"><span class="style-104">{{post.title}}</span></a></h1>
+                                                </div>
+                                                <div class="style-105"><a class="style-106" title="42 Comments" data-tippy-content="42 Comments" href="/post/5171236?scrollToComments=true"><svg class="style-107">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-message-square" class="style-108"></use>
+                                                            <div class="style-109">
+                                                                <title class="style-110">message-square</title>
+                                                            </div>
+                                                        </svg>42</a><button class="style-111" type="button"><svg class="style-112">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-share" class="style-113"></use>
+                                                            <div class="style-114">
+                                                                <title class="style-115">share</title>
+                                                            </div>
+                                                        </svg></button><a class="style-116" title="link" href="https://lemm.ee/post/13326718"><svg class="style-117">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-fedilink" class="style-118"></use>
+                                                            <div class="style-119">
+                                                                <title class="style-120">fedilink</title>
+                                                            </div>
+                                                        </svg></a><button class="style-121" type="button" data-tippy-content="23 points • 26 Upvotes • 3 Downvotes" aria-label="Upvote" aria-pressed="false"><svg class="style-122">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-up1" class="style-123"></use>
+                                                            <div class="style-124">
+                                                                <title class="style-125">arrow-up1</title>
+                                                            </div>
+                                                        </svg><span class="style-126">26</span></button><button class="style-127" type="button" data-tippy-content="23 points • 26 Upvotes • 3 Downvotes" aria-label="Downvote" aria-pressed="false"><svg class="style-128">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-down1" class="style-129"></use>
+                                                            <div class="style-130">
+                                                                <title class="style-131">arrow-down1</title>
+                                                            </div>
+                                                        </svg><span class="style-132">3</span></button><button class="style-133" data-tippy-content="save" aria-label="save"><svg class="style-134">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-star" class="style-135"></use>
+                                                            <div class="style-136">
+                                                                <title class="style-137">star</title>
+                                                            </div>
+                                                        </svg></button><a class="style-138" title="cross-post" data-tippy-content="cross-post" aria-label="cross-post" href="/create_posts"><svg class="style-139">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-copy" class="style-140"></use>
+                                                            <div class="style-141">
+                                                                <title class="style-142">copy</title>
+                                                            </div>
+                                                        </svg></a><button class="style-143" data-tippy-content="view source" aria-label="view source"><svg class="style-144">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-file-text" class="style-145"></use>
+                                                            <div class="style-146">
+                                                                <title class="style-147">file-text</title>
+                                                            </div>
+                                                        </svg></button>
+                                                    <div class="style-148"><button class="style-149" data-tippy-content="more" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="advancedButtonsDropdown5171236" aria-label="more"><svg class="style-150">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-more-vertical" class="style-151"></use>
+                                                                <div class="style-152">
+                                                                    <title class="style-153">more-vertical</title>
+                                                                </div>
+                                                            </svg></button>
+                                                        <ul class="style-154">
+                                                            <li class="style-155"><button class="style-156" aria-label="Show Report Dialog"><svg class="style-157">
+                                                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-flag" class="style-158"></use>
+                                                                        <div class="style-159">
+                                                                            <title class="style-160">flag</title>
+                                                                        </div>
+                                                                    </svg>Create Report</button></li>
+                                                            <li class="style-161"><button class="style-162" aria-label="Block user"><svg class="style-163">
+                                                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-slash" class="style-164"></use>
+                                                                        <div class="style-165">
+                                                                            <title class="style-166">slash</title>
+                                                                        </div>
+                                                                    </svg>Block user</button></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="style-167">
+                                        <article class="style-168">
+                                            <div class="style-169">
+                                                <div class="style-170"><button class="style-171" type="button" data-tippy-content="Upvote" aria-label="Upvote" aria-pressed="false"><a href="{% url 'upvote' post.id 'single_post'%}"><svg class="style-172">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-up1" class="style-173"></use>
+                                                            <div class="style-174">
+                                                                <title class="style-175">arrow-up1</title>
+                                                            </div>
+                                                        </svg>+1</a></button>
+                                                    <div class="style-176" data-tippy-content="23 points • 26 Upvotes • 3 Downvotes">{{post.points}}</div>
+                                                    <button class="style-177" type="button" data-tippy-content="Downvote" aria-label="Downvote" aria-pressed="false"><a href="{% url 'downvote' post.id 'single_post'%}"><svg class="style-178">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-down1" class="style-179"></use>
+                                                            <div class="style-180">
+                                                                <title class="style-181">arrow-down1</title>
+                                                            </div>
+                                                        </svg>-1</a></button>
+                                                </div>
+                                            </div>
+                                            <div class="style-182">
+                                                <div class="style-183">
+                                                    <div class="style-192">
+                                                        <div class="style-193">
+                                                            <h1 class="style-194"><a class="style-195" title="Comments" href="/post/{{post.id}}"><span class="style-196">{{post.title}}</span></a></h1>
+                                                        </div>
+                                                        <div class="style-197"><a class="style-198" title="@meter_kilo@lemm.ee" href="/u/{{post.author.username}}/resumen/-created_date">
+                                                                <picture class="style-199">
+                                                                    <source srcset="/static/68330f7/assets/icons/icon-96x96.png" type="image/webp" class="style-200" />
+                                                                    <source srcset="/static/68330f7/assets/icons/icon-96x96.png" class="style-201" />
+                                                                    <source srcset="/static/68330f7/assets/icons/icon-96x96.png" type="image/jpeg" class="style-202" /><img class="style-203" src="/static/68330f7/assets/icons/icon-96x96.png" alt="" title="" loading="lazy" />
+                                                                </picture><span class="style-204">@{{post.author.username}}</span>
+                                                            </a> to <a class="style-205" title="!programming" href="/community">
+                                                                <picture class="style-206">
+                                                                    <source srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png?format=webp&amp;thumbnail=96" type="image/webp" class="style-207" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png" class="style-208" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png?format=jpg&amp;thumbnail=96" type="image/jpeg" class="style-209" /><img class="style-210" src="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png" alt="" title="" loading="lazy" />
+                                                                </picture><span class="style-211">{{post.community.name}}</span>
+                                                            </a> • 
+                                                            <span class="style-212" data-tippy-content="Tuesday, October 31st, 2023 at 1:47:11 AM GMT+01:00"></span></div>
+                                                            <!--falta enllaçar amb comentaris--> 
+                                                        <div class="style-213"><a class="style-214" title="42 Comments" data-tippy-content="42 Comments" href="#comments"><svg class="style-215">
+                                                                    <div class="style-217">
+                                                                        <title class="style-218">message-square</title>
+                                                                    </div>
+                                                                </svg>Comments</a>
+                                                                {% if post.savedBy.exists %}
+                                                                    {% for saved_user in post.savedBy.all %}
+                                                                        {% if saved_user.username == user.username %}
+                                                                            <button name="unsave"class="style-229" data-tippy-content="unsave" aria-label="unsave"><a class="style-214" title="42 Comments" data-tippy-content="42 Comments" href="{% url 'savepost' id=post.id %}?next={{request.path}}"><svg class="style-230">
+                                                                                <div class="style-232">                                                                        
+                                                                                        <title class="style-233">Unsave</title>                                                                        
+                                                                                </div>
+                                                                            </svg>Unsave</a></button>
+                                                                        {% else %}
+                                                                            <button name="1save" class="style-229" data-tippy-content="save" aria-label="save"><a class="style-214" title="42 Comments" data-tippy-content="42 Comments" href="{% url 'savepost' id=post.id %}?next={{request.path}}"><svg class="style-230">
+                                                                                <div class="style-232">                                                                        
+                                                                                        <title class="style-233">Save</title>                                                                        
+                                                                                </div>
+                                                                            </svg>Save</a></button>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                {% else %}
+                                                                    <button name="2save" class="style-229" data-tippy-content="save" aria-label="save"><a class="style-214" title="42 Comments" data-tippy-content="42 Comments" href="{% url 'savepost' id=post.id %}?next={{request.path}}"><svg class="style-230">
+                                                                        <div class="style-232">                                                                        
+                                                                                <title class="style-233">Save</title>                                                                        
+                                                                        </div>
+                                                                    </svg>Save</a></button>
+                                                                {% endif %}
+                                                                    <div class="style-244" style="margin-bottom: 7.5;"><button class="style-245" data-tippy-content="more" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="advancedButtonsDropdown5171236" aria-label="more"><a class="style-214" title="42 Comments" data-tippy-content="42 Comments" href=""></a><svg class="style-246">
+                                                                                <div class="style-248">
+                                                                                    <title class="style-249">more-vertical</title>
+                                                                                </div>
+                                                                            </svg>More</a></button>
+                                                                        {% if user.is_authenticated and user.username == post.author.username %}
+                                                                        <ul class="dropdown-menu" id="advancedButtonsDropdown4373842">
+                                                                            <li class="style-251"><button class="style-252" aria-label="Show Report Dialog"><svg class="style-253">
+                                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-flag" class="style-254"></use>
+                                                                                <div class="style-255">
+                                                                                    <title class="style-256">flag</title>
+                                                                                </div>
+                                                                            </svg><a href="{% url 'editar_post' post.id %}">Editar post</a></button></li>
+                                                                            <li class="style-251"><form method="post" action="{% url 'confirmar_eliminar_post' post.id 0%}">
+                                                                                {% csrf_token %}
+                                                                                <button type="submit" class="style-252" aria-label="Show Report Dialog">
+                                                                                    <svg class="style-253">
+                                                                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-flag" class="style-254"></use>
+                                                                                        <div class="style-255">
+                                                                                            <title class="style-256">flag</title>
+                                                                                        </div>
+                                                                                    </svg>
+                                                                                    Borrar post
+                                                                                </button>
+                                                                            </form></li>
+                                                                        </ul>
+                                                                        {% else %}
+                                                                        <ul class="dropdown-menu" id="advancedButtonsDropdown4373842">
+                                                                            <li class="style-251"><button class="style-252" aria-label="Show Report Dialog"><svg class="style-253">
+                                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-flag" class="style-254"></use>
+                                                                                <div class="style-255">
+                                                                                    <title class="style-256">flag</title>
+                                                                                </div>
+                                                                            </svg>Create Report</button></li>
+                                                                            <li class="style-251"><button class="style-252" aria-label="Show Report Dialog"><svg class="style-253">
+                                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-flag" class="style-254"></use>
+                                                                                <div class="style-255">
+                                                                                    <title class="style-256">flag</title>
+                                                                                </div>
+                                                                            </svg>Bloquear usuario</button></li>
+                                                                        </ul>
+                                                                        {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <article class="style-263">
+                                        <div class="style-264">
+                                            <p class="style-265">{{post.author.about}}</p>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="style-267"></div>
+                                <div class="style-268">
+                                    <form class="style-269" method="post" action="{% url 'create_comment' post.id %}">
+                                        {% csrf_token %}
+                                        <p>
+                                            <label for="id_body"></label>
+                                            <textarea class="style-348" name="body" cols="40" rows="4" class="style-98-vis" required="" minlength="3" maxlength="200"
+                                            placeholder="Type here to comment..." id="id_body"
+                                                style="height: 40px;"></textarea>                                                                            
+                                        </p>
+                                        <div class="style-270">
+                                            <div class="style-350">
+                                                <div class="style-355"></div><input class="btn btn-primary btn-block" type="submit" value="Comment">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="style-358"><button class="style-359">Sidebar <svg class="style-360">
+                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-plus-square" class="style-361"></use>
+                                            <div class="style-362">
+                                                <title class="style-363">plus-square</title>
+                                            </div>
+                                        </svg></button></div>
+                                    <div class="style-376">
+                                    {% for comment in comments %}
+                                    <ul class="style-377">
+                                        <li class="style-378">
+                                            <article class="style-379">
+                                                <div class="style-380">
+                                                    <div class="style-381"><button class="style-382" aria-label="Collapse" data-tippy-content="Collapse"><svg class="style-383">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-minus-square" class="style-384"></use>
+                                                                <div class="style-385">
+                                                                    <title class="style-386">minus-square</title>
+                                                                </div>
+                                                            </svg></button><a class="style-387" title="@30p87@feddit.de" href="">
+                                                            <picture class="style-388">
+                                                                <source srcset="/static/68330f7/assets/icons/icon-96x96.png" type="image/webp" class="style-389" />
+                                                                <source srcset="/static/68330f7/assets/icons/icon-96x96.png" class="style-390" />
+                                                                <source srcset="/static/68330f7/assets/icons/icon-96x96.png" type="image/jpeg" class="style-391" /><img class="style-392" src="/static/68330f7/assets/icons/icon-96x96.png" alt="" title="" loading="lazy" />
+                                                            </picture><span class="style-393">{{comment.author.username}}</span>
+                                                        </a><a class="style-394" title="link" href="/comment/4394635"><svg class="style-395">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-link" class="style-396"></use>
+                                                                <div class="style-397">
+                                                                    <title class="style-398">link</title>
+                                                                </div>
+                                                                <!--posar link a comentari-->
+                                                            </svg></a><a class="style-399" title="link" href=""><svg class="style-400">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-fedilink" class="style-401"></use>
+                                                                <div class="style-402">
+                                                                    <title class="style-403">fedilink</title>
+                                                                </div>
+                                                            </svg></a>
+                                                        <div class="style-404"></div><span class="style-405" aria-label="2 points">2</span><span class="style-406">•</span><span class="style-407"><span class="style-408" data-tippy-content="Tuesday, October 31st, 2023 at 7:57:06 AM GMT+01:00"></span></span>
+                                                    </div>
+                                                    <div class="style-409">
+                                                        <div class="style-410">
+                                                            <p class="style-411">{{comment.body}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="style-418"><button class="style-419" type="button" data-tippy-content="2 points • 2 Upvotes • 0 Downvotes" aria-label="Upvote" aria-pressed="false"><svg class="style-420">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-up1" class="style-421"></use>
+                                                                <div class="style-422">
+                                                                    <title class="style-423">arrow-up1</title>
+                                                                </div>
+                                                            </svg><span class="style-424">2</span></button><button class="style-425" type="button" data-tippy-content="2 points • 2 Upvotes • 0 Downvotes" aria-label="Downvote" aria-pressed="false"><svg class="style-426">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-down1" class="style-427"></use>
+                                                                <div class="style-428">
+                                                                    <title class="style-429">arrow-down1</title>
+                                                                </div>
+                                                            </svg><span class="style-430"></span></button><button class="style-431" data-tippy-content="reply" aria-label="reply"><svg class="style-432">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-reply1" class="style-433"></use>
+                                                                <div class="style-434">
+                                                                    <title class="style-435">reply1</title>
+                                                                </div>
+                                                            </svg></button><button class="style-436" data-tippy-content="more" aria-label="more"><svg class="style-437">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-more-vertical" class="style-438"></use>
+                                                                <div class="style-439">
+                                                                    <title class="style-440">more-vertical</title>
+                                                                </div>
+                                                            </svg></button></div>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    {% endfor %}
+                                </div>
+                            </main>
+                            <!--<aside class="style-1382">
+                                <div class="style-1383">
+                                    <aside class="style-1384">
+                                        <div class="style-1385">
+                                            <section class="style-1386">
+                                                <div class="style-1387">
+                                                    <div class="style-1388">
+                                                        <h2 class="style-1389">
+                                                            <div class="style-1390">
+                                                                <picture class="style-1391">
+                                                                    <source srcset="https://programming.dev/pictrs/image/d7711fb2-cb17-41cd-b06e-a6de83db25b7.jpeg?format=webp" type="image/webp" class="style-1392" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/d7711fb2-cb17-41cd-b06e-a6de83db25b7.jpeg" class="style-1393" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/d7711fb2-cb17-41cd-b06e-a6de83db25b7.jpeg?format=jpg" type="image/jpeg" class="style-1394" /><img class="style-1395" src="https://programming.dev/pictrs/image/d7711fb2-cb17-41cd-b06e-a6de83db25b7.jpeg" alt="" title="" loading="lazy" />
+                                                                </picture>
+                                                                <picture class="style-1396">
+                                                                    <source srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png?format=webp" type="image/webp" class="style-1397" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png" class="style-1398" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png?format=jpg" type="image/jpeg" class="style-1399" /><img class="style-1400" src="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png" alt="" title="" loading="lazy" />
+                                                                </picture>
+                                                            </div><span class="style-1401"><a class="style-1402" title="!programming" href="/c/programming"><span class="style-1403">Programming</span></a></span>
+                                                        </h2><a class="style-1404" title="!programming" href="/c/programming" rel="noopener nofollow"><span class="style-1405">!programming</span></a>
+                                                    </div><button class="style-1406">Subscribe</button><a class="style-1407" href="/create_post?communityId=3">Create a post</a><button class="style-1408">Block community</button>
+                                                </div>
+                                            </section>
+                                            <section class="style-1409">
+                                                <div class="style-1410">
+                                                    <div class="style-1411">
+                                                        <p class="style-1412">Welcome to the main community in programming.dev! Feel free to post anything relating to the programming here</p>
+                                                        <p class="style-1413">People will guide you in the replies to relevant communities for that kind of content to help get you communities in the instance to then join and make future posts in</p>
+                                                        <p class="style-1414">We ask that if you do a help request please add [help] to the start of the post to help differentiate it from the rest of the posts until we get a flair system in</p>
+                                                        <p class="style-1415">Hope you enjoy the instance!</p>
+                                                    </div>
+                                                    <ul class="style-1416">
+                                                        <li class="style-1417" data-tippy-content="58 active users in the last day">58 users / day</li>
+                                                        <li class="style-1418" data-tippy-content="202 active users in the last week">202 users / week</li>
+                                                        <li class="style-1419" data-tippy-content="985 active users in the last month">985 users / month</li>
+                                                        <li class="style-1420" data-tippy-content="3.82K active users in the last 6 months">3.82K users / 6 months</li>
+                                                        <li class="style-1421">13.5K subscribers</li>
+                                                        <li class="style-1422">690 Posts</li>
+                                                        <li class="style-1423">11.9K Comments</li>
+                                                        <li class="style-1424"><a class="style-1425" href="/modlog/3">Modlog</a></li>
+                                                    </ul>
+                                                    <ul class="style-1426">
+                                                        <li class="style-1427">mods: </li>
+                                                        <li class="style-1428"><a class="style-1429" title="@snowe" href="/u/snowe">
+                                                                <picture class="style-1430">
+                                                                    <source srcset="https://programming.dev/pictrs/image/234e8715-6cb9-465f-ab9b-08bc736f19e9.jpeg?format=webp&amp;thumbnail=96" type="image/webp" class="style-1431" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/234e8715-6cb9-465f-ab9b-08bc736f19e9.jpeg" class="style-1432" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/234e8715-6cb9-465f-ab9b-08bc736f19e9.jpeg?format=jpg&amp;thumbnail=96" type="image/jpeg" class="style-1433" /><img class="style-1434" src="https://programming.dev/pictrs/image/234e8715-6cb9-465f-ab9b-08bc736f19e9.jpeg" alt="" title="" loading="lazy" />
+                                                                </picture><span class="style-1435">snowe</span>
+                                                            </a></li>
+                                                        <li class="style-1436"><a class="style-1437" title="@Ategon" href="/u/Ategon">
+                                                                <picture class="style-1438">
+                                                                    <source srcset="https://programming.dev/pictrs/image/8c68e034-020a-4513-9567-574c26f76a9d.png?format=webp&amp;thumbnail=96" type="image/webp" class="style-1439" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/8c68e034-020a-4513-9567-574c26f76a9d.png" class="style-1440" />
+                                                                    <source srcset="https://programming.dev/pictrs/image/8c68e034-020a-4513-9567-574c26f76a9d.png?format=jpg&amp;thumbnail=96" type="image/jpeg" class="style-1441" /><img class="style-1442" src="https://programming.dev/pictrs/image/8c68e034-020a-4513-9567-574c26f76a9d.png" alt="" title="" loading="lazy" />
+                                                                </picture><span class="style-1443">Ategon</span>
+                                                            </a></li>
+                                                        <li class="style-1444"><a class="style-1445" title="@MaungaHikoi@lemmy.nz" href="/u/MaungaHikoi@lemmy.nz">
+                                                                <picture class="style-1446">
+                                                                    <source srcset="/static/68330f7/assets/icons/icon-96x96.png" type="image/webp" class="style-1447" />
+                                                                    <source srcset="/static/68330f7/assets/icons/icon-96x96.png" class="style-1448" />
+                                                                    <source srcset="/static/68330f7/assets/icons/icon-96x96.png" type="image/jpeg" class="style-1449" /><img class="style-1450" src="/static/68330f7/assets/icons/icon-96x96.png" alt="" title="" loading="lazy" />
+                                                                </picture><span class="style-1451">@MaungaHikoi@lemmy.nz</span>
+                                                            </a></li>
+                                                    </ul>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </aside>-->
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="style-1452">
+                <div class="style-1453">
+                    <ul class="style-1454">
+                        <li class="style-1455"><span class="style-1456">BE: 0.18.5</span></li>
+                        <li class="style-1457"><a class="style-1458" href="/modlog">Modlog</a></li>
+                        <li class="style-1459"><a class="style-1460" href="/legal">Legal</a></li>
+                        <li class="style-1461"><a class="style-1462" href="/instances">Instances</a></li>
+                        <li class="style-1463"><a class="style-1464" href="https://join-lemmy.org/docs/en/index.html">Docs</a></li>
+                        <li class="style-1465"><a class="style-1466" href="https://github.com/LemmyNet">Code</a></li>
+                        <li class="style-1467"><a class="style-1468" href="https://join-lemmy.org">join-lemmy.org</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,844 @@
+{%extends "navigation.html"%}
+{% block content %}
+<div class="mt-4 p-0 fl-1">
+    <div tabindex="-1">
+        <div class="home container-lg">
+            <div class="row">
+                <main class="col-12 col-md-8 col-lg-9" role="main">
+                    <div id="tagline">
+                        
+                    </div>
+                    <div class="d-block d-md-none">
+                        <div class="row">
+                            <div class="col-12"><button class="btn btn-secondary d-inline-block mb-2 me-3">Trending <svg
+                                        class="icon icon-inline">
+                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-plus-square"></use>
+                                        <div class="visually-hidden">
+                                            <title>plus-square</title>
+                                        </div>
+                                    </svg></button><button class="btn btn-secondary d-inline-block mb-2 me-3">Sidebar
+                                    <svg class="icon icon-inline">
+                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-plus-square"></use>
+                                        <div class="visually-hidden">
+                                            <title>plus-square</title>
+                                        </div>
+                                    </svg></button></div>
+                        </div>
+                    </div>
+                    <div class="main-content-wrapper">
+                        <div>
+                            <div class="row align-items-center mb-3 g-3">
+                                <div class="col-auto">
+                                    <div class="data-type-select btn-group btn-group-toggle flex-wrap" role="group">
+                                        <a href="/" class="btn btn-outline-secondary">Publicaciones</a>
+                                        <a href="/comments" class="btn btn-outline-secondary active">Comentarios</a>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="listing-type-select btn-group btn-group-toggle flex-wrap" role="group">
+                                         <!--<input
+                                            class="btn-check" id="listing-type-input-yiKIT0wGHpjjzPaecZy4-subscribed" type="radio"
+                                            value="Subscribed"><label class="btn btn-outline-secondary pointer"
+                                            for="listing-type-input-yiKIT0wGHpjjzPaecZy4-subscribed"
+                                            title="Muestra las comunidades a las que te has suscrito">Suscrito</label><input
+                                            class="btn-check" id="listing-type-input-yiKIT0wGHpjjzPaecZy4-local" type="radio" value="Local"
+                                            checked=""><label class="pointer btn btn-outline-secondary active"
+                                            for="listing-type-input-yiKIT0wGHpjjzPaecZy4-local"
+                                            title="Muestra sólo las comunidades locales">Local</label><input class="btn-check"
+                                            id="listing-type-input-yiKIT0wGHpjjzPaecZy4-all" type="radio" value="All"><label
+                                            class="pointer btn btn-outline-secondary"
+                                            title="Muestra todas las comunidades, incluidas las federadas"
+                                            for="listing-type-input-yiKIT0wGHpjjzPaecZy4-all">Todo</label></div>-->
+                                        <a href="{% url 'coment_suscrit' 'suscrito' %}" class="btn btn-outline-secondary pointer">Suscrito</a>
+                                        <a href="/comments" class="btn btn-outline-secondary ">Local</a>
+                                        <a href="/comments" class="btn btn-outline-secondary active">Todo</a>
+                                    </div> 
+                                </div> 
+                                <div class="col-auto">
+                                    <div class="listing-type-select btn-group btn-group-toggle flex-wrap" role="group">
+                                        <a href="{% url 'order_coment' '-created_date' %}" class="btn btn-outline-secondary">Nuevo</a>
+                                        <a href="{% url 'order_coment' 'created_date' %}" class="btn btn-outline-secondary">Antiguo</a>
+                                        <a href="{% url 'order_coment' '-finalvotes' %}" class="btn btn-outline-secondary">Mejor</a>
+                                    </div>
+                                </div> 
+                                <div class="col-auto">
+                                    <div class="listing-type-select btn-group btn-group-toggle flex-wrap" role="group">
+                                    <form method="get">
+                                        <div id="custom-search-input">
+                                            <input type="text" class="form-control" placeholder="Search..." name= "buscar">
+                                            <span class="input-group-list">
+                                                <i class="icon icon-search"></i>
+                                                <button type="submit" class="boton btn-success">Search</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            </div>
+                                <!--<div class="col-auto"><select class="sort-select form-select d-inline-block w-auto me-2"
+                                        id="sort-select-1xnRKpEgeTi1TuUc1UuL" name="sort-select-1xnRKpEgeTi1TuUc1UuL"
+                                        aria-label="Sort type">
+                                        <option disabled="" aria-hidden="true" value="undefined">Sort type</option>
+                                        <option value="Hot">Hot</option>
+                                        <option value="Active">Active</option>
+                                        <option value="New">New</option>
+                                        <option value="Old">Old</option>
+                                        <option value="MostComments">Most Comments</option>
+                                        <option value="NewComments">New Comments</option>
+                                        <option disabled="" aria-hidden="true" value="undefined">─────</option>
+                                        <option value="TopHour">Top Hour</option>
+                                        <option value="TopSixHour">Top Six Hours</option>
+                                        <option value="TopTwelveHour">Top Twelve Hours</option>
+                                        <option value="TopDay">Top Day</option>
+                                        <option value="TopWeek">Top Week</option>
+                                        <option value="TopMonth">Top Month</option>
+                                        <option value="TopThreeMonths">Top Three Months</option>
+                                        <option value="TopSixMonths">Top Six Months</option>
+                                        <option value="TopNineMonths">Top Nine Months</option>
+                                        <option value="TopYear">Top Year</option>
+                                        <option value="TopAll">Top All Time</option>
+                                    </select>--><a class="sort-select-icon text-muted"
+                                        href="https://join-lemmy.org/docs/en/users/03-votes-and-ranking.html"
+                                        rel="noopener nofollow" title="sorting help"><svg class="icon icon-inline">
+                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-help-circle"></use>
+                                            <div class="visually-hidden">
+                                                <title>help-circle</title>
+                                            </div>
+                                        </svg></a></div>
+                                <div class="col-auto ps-0"><a href="/feeds/local.xml?sort=Active"
+                                        rel="noopener nofollow" title="RSS"><svg class="icon text-muted small">
+                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-rss"></use>
+                                            <div class="visually-hidden">
+                                                <title>rss</title>
+                                            </div>
+                                        </svg></a>
+                                    <link rel="alternate" type="application/atom+xml"
+                                        href="/feeds/local.xml?sort=Active">
+                                </div>
+                            </div>
+                            <!--Here-->
+                            <div class="comment-listings">
+                                {% for comment in comments %}
+                                <div class="comment-listing mt-2">
+                                    <div class="d-block d-sm-none">
+                                        <article class="row post-container">
+                                            <div class="col-12">
+                                                <div class="small mb-1 mb-md-0"><a class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@ICastFist" href="/u/ICastFist">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/6ffaddc7-10f8-49f8-895e-c55a909bc49d.png?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/6ffaddc7-10f8-49f8-895e-c55a909bc49d.png">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/6ffaddc7-10f8-49f8-895e-c55a909bc49d.png?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/6ffaddc7-10f8-49f8-895e-c55a909bc49d.png"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>I Cast Fist</span>
+                                                    </a> to <a class="community-link " title="!programming" href="/c/programming">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/8140dda6-9512-4297-ac17-d303638c90a6.png"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span class="overflow-wrap-anywhere">Programming</span>
+                                                    </a><span class="mx-1 badge text-bg-light">English</span> • <span
+                                                        class="moment-time pointer unselectable"
+                                                        data-tippy-content="Wednesday, November 1st, 2023 at 10:18:36 PM GMT+01:00">1 day ago</span>
+                                                </div>
+                                                <div class="post-title">
+                                                    <h1 class="h5 d-inline text-break"><a class="d-inline link-dark" title="Comments"
+                                                            href="/post/5263173"><span class="d-inline">Which language you wish would really grow and
+                                                                reach mainstream adoption?</span></a></h1><button
+                                                        class="btn btn-sm btn-link link-dark link-opacity-75 link-opacity-100-hover py-0 align-baseline"
+                                                        type="button"><svg class="icon icon-inline">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-plus-square"></use>
+                                                            <div class="visually-hidden">
+                                                                <title>plus-square</title>
+                                                            </div>
+                                                        </svg></button>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-start flex-wrap text-muted"><a
+                                                        class="btn btn-link btn-sm text-muted ps-0" title="104 Comments"
+                                                        data-tippy-content="104 Comments" href="/post/5263173?scrollToComments=true"><svg
+                                                            class="icon me-1 icon-inline">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-message-square"></use>
+                                                            <div class="visually-hidden">
+                                                                <title>message-square</title>
+                                                            </div>
+                                                        </svg>104</a><button class="btn btn-sm btn-link btn-animate text-muted py-0" type="button"><svg
+                                                            class="icon icon-inline">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-share"></use>
+                                                            <div class="visually-hidden">
+                                                                <title>share</title>
+                                                            </div>
+                                                        </svg></button><button class="btn btn-animate btn-sm btn-link py-0 px-1 text-muted"
+                                                        type="button" data-tippy-content="99 points • 103 Upvotes • 4 Downvotes" aria-label="Upvote"
+                                                        aria-pressed="false"><svg class="icon icon-inline small">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-up1"></use>
+                                                            <div class="visually-hidden">
+                                                                <title>arrow-up1</title>
+                                                            </div>
+                                                        </svg><span class="ms-2">103</span></button><button
+                                                        class="ms-2 btn btn-sm btn-link btn-animate btn py-0 px-1 text-muted" type="button"
+                                                        data-tippy-content="99 points • 103 Upvotes • 4 Downvotes" aria-label="Downvote"
+                                                        aria-pressed="false"><svg class="icon icon-inline small">
+                                                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-down1"></use>
+                                                            <div class="visually-hidden">
+                                                                <title>arrow-down1</title>
+                                                            </div>
+                                                        </svg><span class="ms-2">4</span></button></div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                    <div class="d-none d-sm-block">
+                                        <article class="row post-container">
+                                            <div class="col flex-grow-0">
+                                                <div class="vote-bar small text-center"><button id="upvote-btn" class="btn-animate btn btn-link p-0 text-muted"
+                                                        type="button" data-tippy-content="Upvote" aria-label="Upvote" aria-pressed="false" data-comment-id="{{ comment.id }}">
+                                                            
+                                                            <div class="visually-hidden">
+                                                                <title>arrow-up1</title>
+                                                            </div>
+                                                            <a href="{% url 'upvote_comment' comment.id %}"><img src="/static/upvote.png" width="15" height="15"></a>
+                                                        </button>
+                                                    <div class="unselectable pointer text-muted post-score"
+                                                        data-tippy-content="{{ comment.upvotes }} points • {{ comment.upvotes }} Upvotes • {{ comment.downvotes }} Downvotes">{{ comment.finalvotes }}</div><button
+                                                        id="downvote-btn" class="btn-animate btn btn-link p-0 text-muted" type="button" data-tippy-content="Downvote"
+                                                        aria-label="Downvote" aria-pressed="false" data-comment-id="{{ comment.id }}">
+                                                            <div class="visually-hidden">
+                                                                <title>arrow-down1</title>
+                                                            </div>
+                                                            <a href="{% url 'downvote_comment' comment.id %}"><img src="/static/downvote.png" width="15" height="15"></a>
+                                                        </button>
+                                                </div>
+                                            </div>
+                                            <div class="col flex-grow-1">
+                                                <div class="row">
+                                                    <div class="ms-2">
+                                                        <div class="d-flex flex-wrap align-items-center text-muted small">
+                                                                </svg></button><a class="person-listing d-inline-flex align-items-baseline text-info" title="{{ comment.author }}"
+                                                                href="/u/{{ comment.author.username }}/resumen/-created_date">
+                                                                <span>@{{ comment.author.username }}</span>
+                                                            </a><span class="mx-1">to</span>
+                                                            <a class="community-link " title="!{{comment.post.community.name}}" href="/c/{{comment.post.community.id}}/posts/created_date">
+                                                                <picture>
+                                                                    {% if comment.post.community.avatar is not None and comment.post.community.avatar %}
+                                                                    <img src="{{comment.post.community.avatar.url}}" class="overflow-hidden pictrs-image object-fit-cover img-icon me-1">
+                                                                    {% endif %}
+                                                                </picture><span class="overflow-wrap-anywhere">{{comment.post.community.name}}</span>
+                                                            </a><span class="mx-2">•</span><a class="me-2" href="/post/{{ comment.post.id }}">{{ comment.post.title }}</a><a class="btn btn-link btn-animate text-muted btn-sm" title="Show context"
+                                                                href="/comment/4465788"><svg class="icon icon-inline">
+                                                                    <use xlink:href="/static/68330f7/assets/symbols.svg#icon-link"></use>
+                                                                    <div class="visually-hidden">
+                                                                        <title>link</title>
+                                                                    </div>
+                                                                </svg></a><a class="btn btn-link btn-animate text-muted btn-sm" title="Show context"
+                                                                href="https://programming.dev/comment/4465788"><svg class="icon icon-inline">
+                                                                    <use xlink:href="/static/68330f7/assets/symbols.svg#icon-fedilink"></use>
+                                                                    <div class="visually-hidden">
+                                                                        <title>fedilink</title>
+                                                                    </div>
+                                                                </svg></a>
+                                                            <span class="moment-time pointer unselectable"
+                                                            data-tippy-content="Thursday, November 2nd, 2023 at 10:26:22 PM GMT+01:00"></span></span>
+                                                            <a class="btn btn-link btn-animate text-muted btn-sm" title="Save" href="{% url 'savecomment' id=comment.id %}?next={{request.path}}">
+                                                                <img src="/static/save.png" width="15" height="15">
+                                                            </a>
+                                                            {% if comment.author.username == request.user.username %}
+                                                            <a class="me-2" href="{% url 'edit_comment' comment.post.id comment.id %}">Edit</a>
+                                                            <a class="me-2" href="{% url 'delete_comment' comment.post.id comment.id %}">Delete</a>
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <div class="md-div">
+                                                                <p>{{ comment.body }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="comment-bottom-btns d-flex justify-content-between justify-content-lg-start flex-wrap text-muted fw-bold">
+                                                            <div class="btn-group" role="group">
+                                                                <a class="btn btn-link btn-animate text-muted" title="reply" href="{% url 'reply_comment' comment.post.id comment.id %}">
+                                                                    <img src="/static/replycomment.png" width="10" height="10">
+                                                                </a>
+                                                                <a class="btn btn-link btn-animate text-muted" title="Show context" href="/comment/4465788">
+                                                                        <img src="/static/link.png" width="10" height="10">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                            <div class="paginator my-2"><button class="btn btn-secondary me-2"
+                                    disabled="">Anterior</button><button class="btn btn-secondary">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <!--<aside class="d-none d-md-block col-md-4 col-lg-3">
+                    <div id="sidebarContainer">
+                        <section class="card border-secondary mb-3" id="sidebarMain">
+                            <header class="card-header d-flex align-items-center">
+                                <h5 class="mb-0">
+                                    <div>Trending <a class="text-body" href="/communities">communities</a></div>
+                                </h5>
+                            </header>
+                            <div class="card-body">
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"><a class="community-link " title="!ada" href="/c/ada">
+                                            <picture>
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/03c224a2-5256-408b-b517-fd6cb019bee5.png?format=webp&amp;thumbnail=96"
+                                                    type="image/webp">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/03c224a2-5256-408b-b517-fd6cb019bee5.png">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/03c224a2-5256-408b-b517-fd6cb019bee5.png?format=jpg&amp;thumbnail=96"
+                                                    type="image/jpeg"><img
+                                                    class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                    src="https://programming.dev/pictrs/image/03c224a2-5256-408b-b517-fd6cb019bee5.png"
+                                                    alt="" title="" loading="lazy">
+                                            </picture><span class="overflow-wrap-anywhere">Ada</span>
+                                        </a></li>
+                                    <li class="list-inline-item"><a class="community-link " title="!engineering_resumes"
+                                            href="/c/engineering_resumes">
+                                            <picture>
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/6a5ab191-8569-45d5-b693-caf18fe37ada.png?format=webp&amp;thumbnail=96"
+                                                    type="image/webp">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/6a5ab191-8569-45d5-b693-caf18fe37ada.png">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/6a5ab191-8569-45d5-b693-caf18fe37ada.png?format=jpg&amp;thumbnail=96"
+                                                    type="image/jpeg"><img
+                                                    class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                    src="https://programming.dev/pictrs/image/6a5ab191-8569-45d5-b693-caf18fe37ada.png"
+                                                    alt="" title="" loading="lazy">
+                                            </picture><span class="overflow-wrap-anywhere">Engineering Resumes</span>
+                                        </a></li>
+                                    <li class="list-inline-item"><a class="community-link " title="!archbtw"
+                                            href="/c/archbtw"><span class="overflow-wrap-anywhere">i use arch
+                                                btw</span></a></li>
+                                    <li class="list-inline-item"><a class="community-link " title="!gentoo"
+                                            href="/c/gentoo">
+                                            <picture>
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/1078f66f-154d-44ba-b167-e9b9b0eb122d.png?format=webp&amp;thumbnail=96"
+                                                    type="image/webp">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/1078f66f-154d-44ba-b167-e9b9b0eb122d.png">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/1078f66f-154d-44ba-b167-e9b9b0eb122d.png?format=jpg&amp;thumbnail=96"
+                                                    type="image/jpeg"><img
+                                                    class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                    src="https://programming.dev/pictrs/image/1078f66f-154d-44ba-b167-e9b9b0eb122d.png"
+                                                    alt="" title="" loading="lazy">
+                                            </picture><span class="overflow-wrap-anywhere">Gentoo</span>
+                                        </a></li>
+                                    <li class="list-inline-item"><a class="community-link " title="!git" href="/c/git">
+                                            <picture>
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/55a4e1dc-a7d0-41e6-88fc-05e1cd3ccab6.png?format=webp&amp;thumbnail=96"
+                                                    type="image/webp">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/55a4e1dc-a7d0-41e6-88fc-05e1cd3ccab6.png">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/55a4e1dc-a7d0-41e6-88fc-05e1cd3ccab6.png?format=jpg&amp;thumbnail=96"
+                                                    type="image/jpeg"><img
+                                                    class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                    src="https://programming.dev/pictrs/image/55a4e1dc-a7d0-41e6-88fc-05e1cd3ccab6.png"
+                                                    alt="" title="" loading="lazy">
+                                            </picture><span class="overflow-wrap-anywhere">Git</span>
+                                        </a></li>
+                                    <li class="list-inline-item"><a class="community-link " title="!opensource"
+                                            href="/c/opensource">
+                                            <picture>
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/244e6071-5fec-4df6-81d8-ab5d08fabf4d.png?format=webp&amp;thumbnail=96"
+                                                    type="image/webp">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/244e6071-5fec-4df6-81d8-ab5d08fabf4d.png">
+                                                <source
+                                                    srcset="https://programming.dev/pictrs/image/244e6071-5fec-4df6-81d8-ab5d08fabf4d.png?format=jpg&amp;thumbnail=96"
+                                                    type="image/jpeg"><img
+                                                    class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                    src="https://programming.dev/pictrs/image/244e6071-5fec-4df6-81d8-ab5d08fabf4d.png"
+                                                    alt="" title="" loading="lazy">
+                                            </picture><span class="overflow-wrap-anywhere">Opensource</span>
+                                        </a></li>
+                                </ul><a class="btn btn-secondary d-block" href="/communities">Explore Communities</a>
+                            </div>
+                        </section>
+                        <div class="site-sidebar accordion">
+                            <section class="card border-secondary mb-3" id="sidebarInfo">
+                                <header class="card-header" id="sidebarInfoHeader">
+                                    <div class="mb-2">
+                                        <h5 class="mb-0 d-inline">programming.dev</h5><button class="btn btn-sm"
+                                            type="button" aria-label="Collapse" data-tippy-content="Collapse"
+                                            data-bs-toggle="collapse" data-bs-target="#sidebarInfoBody"
+                                            aria-expanded="true" aria-controls="sidebarInfoBody"><svg
+                                                class="icon icon-inline">
+                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-minus-square">
+                                                </use>
+                                                <div class="visually-hidden">
+                                                    <title>minus-square</title>
+                                                </div>
+                                            </svg></button>
+                                    </div>
+                                    <div class="banner-icon-header position-relative mb-2">
+                                        <picture>
+                                            <source
+                                                srcset="https://programming.dev/pictrs/image/52f986a9-7020-4442-8224-6499d5e84ed2.png?format=webp"
+                                                type="image/webp">
+                                            <source
+                                                srcset="https://programming.dev/pictrs/image/52f986a9-7020-4442-8224-6499d5e84ed2.png">
+                                            <source
+                                                srcset="https://programming.dev/pictrs/image/52f986a9-7020-4442-8224-6499d5e84ed2.png?format=jpg"
+                                                type="image/jpeg"><img
+                                                class="overflow-hidden pictrs-image img-fluid banner img-expanded slight-radius"
+                                                src="https://programming.dev/pictrs/image/52f986a9-7020-4442-8224-6499d5e84ed2.png"
+                                                alt="" title="" loading="lazy">
+                                        </picture>
+                                    </div>
+                                </header>
+                                <div id="sidebarInfoBody" aria-labelledby="sidebarInfoHeader">
+                                    <div class="card-body">
+                                        <div>
+                                            <h6>A collection of programming communities</h6>
+                                            <div class="md-div">
+                                                <h1>Welcome Programmers!</h1>
+                                                <p><a href="https://programming.dev">programming.dev</a> is a collection
+                                                    of programming communities aimed at topics relevant to software
+                                                    engineers, hackers, hardware and software enthusiasts, script
+                                                    kiddies, cryptographers, researchers, roboticists, and more.</p>
+                                                <p>The site is primarily english with some communities in other
+                                                    languages. Feel free to click on one of the sections below to see
+                                                    some information on it.</p>
+                                                <details>
+                                                    <summary> Post Sorts </summary>
+                                                    <h3>Post Sorts</h3>
+                                                    <p>Posts in our site can be viewed using the local sort and posts
+                                                        from all connected sites (lemmy.world, <a
+                                                            href="http://beehaw.org">beehaw.org</a>, <a
+                                                            href="http://lemm.ee">lemm.ee</a>, etc.) can be viewed using
+                                                        the all sort.</p>
+                                                    <p>The active sort will show posts that are getting comment activity
+                                                        while the hot sort will get posts that are getting more upvotes.
+                                                        New will show new posts and top will show the top posts for the
+                                                        time frame you select (last hour, last 6 hours, etc.)</p>
+                                                    <hr>
+                                                </details>
+                                                <details>
+                                                    <summary> Finding Communities </summary>
+                                                    <h3>Finding Communities</h3>
+                                                    <p>To find communities in our instance you can check out our <a
+                                                            href="https://programming.dev/communities">community
+                                                            list</a></p>
+                                                    <p>For finding communities within the wider fediverse including all
+                                                        connected sites you can use one of these sites:</p>
+                                                    <ul>
+                                                        <li><a href="https://lemmyverse.net/">lemmyverse</a> (easy way
+                                                            to search and browse all communities)</li>
+                                                        <li><a
+                                                                href="https://sub.rehab/?visibleServices=lemmy">sub.rehab</a>
+                                                            (shows alternative communities to some subreddits)</li>
+                                                        <li><a href="https://browse.feddit.de/">feddit</a> (a way to
+                                                            search for communities)</li>
+                                                    </ul>
+                                                    <hr>
+                                                </details>
+                                                <details>
+                                                    <summary> Community Creation </summary>
+                                                    <h3>Community Creation</h3>
+                                                    <p>Communities in our instance are created from our <a
+                                                            href="/c/community_request@programming.dev">community
+                                                            request zone</a>. If you have an idea for a community that
+                                                        fits our instance that hasnt been made already feel free to
+                                                        create a post for it there. Communities will be considered for
+                                                        creation if theres enough interest in the idea shown by people
+                                                        upvoting it</p>
+                                                    <hr>
+                                                </details>
+                                                <details>
+                                                    <summary> Rules </summary>
+                                                    <h3>User Rules</h3>
+                                                    <ul>
+                                                        <li>Dangerous content on the instance and federated instances
+                                                            including phishing, spamming, brigading, unmarked nsfw, nsfw
+                                                            content in sfw communities, doxing, etc. is not allowed and
+                                                            subject to be handled by the mods or admins</li>
+                                                        <li>Hate speech is not allowed on the instance or in instances
+                                                            federated with it. This includes remarks directed at sex,
+                                                            gender, ethnicity, orientation, disabilities, etc…</li>
+                                                        <li>Other content is up to the discretion of the mods of the
+                                                            community its posted in</li>
+                                                    </ul>
+                                                    <h3>Community Rules</h3>
+                                                    <ul>
+                                                        <li>If a community has no dedicated mods it will be managed by
+                                                            instance admins until a mod team is found</li>
+                                                        <li>If a community mod team has gone inactive and no longer
+                                                            maintains a community new mods may be added</li>
+                                                    </ul>
+                                                    <h3>Federation Rules</h3>
+                                                    <ul>
+                                                        <li>Any federated communities that have shown they will not
+                                                            enforce our user rules while their content shows up on our
+                                                            feeds will have their community removed from our instance
+                                                        </li>
+                                                        <li>Instances that continually encourage this type of behavior
+                                                            or are built to only do this type of behavior are subject to
+                                                            be defederated</li>
+                                                        <li>If an instance is not being managed (due to owners being
+                                                            gone, etc.) it is subject to be defederated</li>
+                                                        <li>Certain content may be hidden from our all feed including
+                                                            politics and bot spam. (Not currently implemented due to
+                                                            lemmy limitations but will be eventually). This means it
+                                                            won’t show up in all but you can still view it and subscribe
+                                                            to the communities to have it show in your subscribed feed
+                                                        </li>
+                                                    </ul>
+                                                    <h3>Bot Rules</h3>
+                                                    <ul>
+                                                        <li>Bots interacting in our communities must follow our
+                                                            Programming.dev bot guidelines (see the bot guidelines
+                                                            section below)</li>
+                                                    </ul>
+                                                    <hr>
+                                                </details>
+                                                <details>
+                                                    <summary> Bot Guidelines </summary>
+                                                    <h3>Bot Guidelines</h3>
+                                                    <ol>
+                                                        <li><code>Mark Bots as Bots</code> Bot accounts should be marked
+                                                            that they are a bot using the checkbox in the user settings.
+                                                            This includes any automation in an account (if you automate
+                                                            part of your personal account, put what the automation is in
+                                                            your bio so people know)</li>
+                                                        <li><code>Put contact info</code> The owner of the bot and some
+                                                            way to contact them must be in the bot’s bio (unless its an
+                                                            automated personal account, in that case the account itself
+                                                            it the way to contact)</li>
+                                                        <li><code>Use mentions as prefix</code> If a bot has commands it
+                                                            should use its mention as a prefix. (This will allow
+                                                            different bots to use the same commands without interfering
+                                                            with each other)</li>
+                                                        <li><code>Dont spam</code> Bots should not spam posts or
+                                                            comments. (If a bot command has been used its fine to do a
+                                                            response but dont drown out non bot posts in the local new
+                                                            sort.) Certain cases are unavoidable such as if you want to
+                                                            get a bot posting weekly threads in different communities at
+                                                            the same time but in those cases please contact me first to
+                                                            get it approved</li>
+                                                        <li><code>Allow mods to opt in</code> Bots participating in a
+                                                            community should be opt in so communities can choose what
+                                                            bots they want. If you want a bot to be allowed in a
+                                                            community please contact the moderators of that community
+                                                            first. EXCEPTION: If a bot is deemed to be a well behaving
+                                                            bot that brings net good to the instance it can override
+                                                            this rule as long as it has been approved by an admin. This
+                                                            can include things such as a tldr bot, remindme bot, link
+                                                            fixer bot, piped link converter bot, etc. If a bot has
+                                                            overriden rule 5 with this exception community moderators
+                                                            should still be able to opt out of the bot</li>
+                                                    </ol>
+                                                    <hr>
+                                                </details>
+                                                <details>
+                                                    <summary> Donations </summary>
+                                                    <h3>Donations</h3>
+                                                    <p>If you would like to help support the server you can donate on <a
+                                                            href="https://programming.dev/u/snowe">@snowe</a>’s <a
+                                                            href="https://github.com/sponsors/snowe2010/">GitHub
+                                                            Sponsors page</a>. We will be setting up a different method
+                                                        to donate later, but for now, we’ve been getting asked a ton for
+                                                        how to donate.</p>
+                                                    <hr>
+                                                </details>
+                                                <details>
+                                                    <summary> Discord / Matrix / Mastodon </summary>
+                                                    <h3>Other zones</h3>
+                                                    <p>We are on various other platforms for communication outside the
+                                                        site. For real time chat there is both discord and matrix and we
+                                                        have a mastodon account for microblogging where things such as
+                                                        instance downtimes are announced.</p>
+                                                    <ul>
+                                                        <li><a href="https://discord.gg/kwyxvYEYt4">Discord Server</a>
+                                                        </li>
+                                                        <li><a href="https://matrix.to/#/#p.d:matrix.org">Matrix
+                                                                Space</a></li>
+                                                        <li><a
+                                                                href="https://mastodon.social/@programming_dev">Mastodon</a>
+                                                        </li>
+                                                    </ul>
+                                                    <hr>
+                                                </details>
+                                                <details>
+                                                    <summary> TOTP Bug </summary>
+                                                    <h3>TOTP Bug</h3>
+                                                    <p>Currently there is a major bug with TOTP. Please see the discord
+                                                        #user-help page or the matrix for more information.</p>
+                                                    <hr>
+                                                </details>
+                                                <hr>
+                                                <p><img src="https://fediseer.com/api/v1/badges/endorsements/programming.dev.svg"
+                                                        alt="">
+                                                    <img src="https://fediseer.com/api/v1/badges/guarantees/programming.dev.svg"
+                                                        alt="">
+                                                    <a href="https://github.com/PippitWeb/pippit"><img
+                                                            src="https://img.shields.io/badge/Software-???-239145?logo=Lemmy"
+                                                            alt=""></a> <a href="https://status.programming.dev/"><img
+                                                            src="https://uptime.lemmings.world/programming.dev.svg"
+                                                            alt=""></a> <a
+                                                        href="https://github.com/sponsors/snowe2010"><img
+                                                            src="https://img.shields.io/github/sponsors/snowe2010?label=Donators&amp;logo=GitHub&amp;color=239145"
+                                                            alt=""></a> <a
+                                                        href="https://github.com/maltfield/awesome-lemmy-instances"><img
+                                                            src="https://img.shields.io/badge/Instance_Rank-10/1360-239145"
+                                                            alt=""></a> <a
+                                                        href="https://matrix.to/#/#p.d:matrix.org"><img
+                                                            src="https://img.shields.io/matrix/p.d:matrix.org?logo=Matrix&amp;color=232323"
+                                                            alt=""></a> <a
+                                                        href="https://discord.com/invite/kwyxvYEYt4"><img
+                                                            src="https://img.shields.io/discord/1117205340497399808?logo=Discord&amp;logoColor=ffffff&amp;color=232323"
+                                                            alt=""></a> <a
+                                                        href="https://mastodon.social/@programming_dev"><img
+                                                            src="https://img.shields.io/mastodon/follow/110597182202746076?style=flat&amp;logo=Mastodon&amp;color=232323&amp;logoColor=ffffff"
+                                                            alt=""></a>
+                                                </p>
+                                                <hr>
+                                                <p><a href="/c/programming@programming.dev"><img
+                                                            src="https://img.shields.io/lemmy/programming%40programming.dev?logo=Lemmy&amp;color=232323&amp;label=programming"
+                                                            alt=""></a> <a href="/c/meta@programming.dev"><img
+                                                            src="https://img.shields.io/lemmy/meta%40programming.dev?logo=Lemmy&amp;color=232323&amp;label=meta"
+                                                            alt=""></a> <a
+                                                        href="/c/community_request@programming.dev"><img
+                                                            src="https://img.shields.io/lemmy/community_request%40programming.dev?logo=Lemmy&amp;color=232323&amp;label=community_request"
+                                                            alt=""></a> <a href="/c/events@programming.dev"><img
+                                                            src="https://img.shields.io/lemmy/events%40programming.dev?logo=Lemmy&amp;color=232323&amp;label=events"
+                                                            alt=""></a></p>
+                                                <hr>
+                                                <p>$n^4 + 1/2$</p>
+                                                <pre><code>console.log("hello world")
+</code></pre>
+                                            </div>
+                                            <ul class="badges my-1 list-inline">
+                                                <li class="list-inline-item badge text-bg-secondary pointer"
+                                                    data-tippy-content="134 active users in the last day">134 users /
+                                                    day</li>
+                                                <li class="list-inline-item badge text-bg-secondary pointer"
+                                                    data-tippy-content="392 active users in the last week">392 users /
+                                                    week</li>
+                                                <li class="list-inline-item badge text-bg-secondary pointer"
+                                                    data-tippy-content="756 active users in the last month">756 users /
+                                                    month</li>
+                                                <li class="list-inline-item badge text-bg-secondary pointer"
+                                                    data-tippy-content="2.09K active users in the last 6 months">2.09K
+                                                    users / 6 months</li>
+                                                <li class="list-inline-item badge text-bg-secondary">6.89K users</li>
+                                                <li class="list-inline-item badge text-bg-secondary">176 Communities
+                                                </li>
+                                                <li class="list-inline-item badge text-bg-secondary">6.16K Posts</li>
+                                                <li class="list-inline-item badge text-bg-secondary">53.3K Comments</li>
+                                                <li class="list-inline-item"><a class="badge text-bg-primary"
+                                                        href="/modlog">Modlog</a></li>
+                                            </ul>
+                                            <ul class="mt-1 list-inline small mb-0">
+                                                <li class="list-inline-item">admins:</li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@snowe" href="/u/snowe">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/234e8715-6cb9-465f-ab9b-08bc736f19e9.jpeg?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/234e8715-6cb9-465f-ab9b-08bc736f19e9.jpeg">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/234e8715-6cb9-465f-ab9b-08bc736f19e9.jpeg?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/234e8715-6cb9-465f-ab9b-08bc736f19e9.jpeg"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>snowe</span>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@erlingur" href="/u/erlingur">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/b6bbaea7-9e3e-4210-97ca-cbaded5c320f.jpeg?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/b6bbaea7-9e3e-4210-97ca-cbaded5c320f.jpeg">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/b6bbaea7-9e3e-4210-97ca-cbaded5c320f.jpeg?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/b6bbaea7-9e3e-4210-97ca-cbaded5c320f.jpeg"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>Erlingur</span>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@Ategon" href="/u/Ategon">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/8c68e034-020a-4513-9567-574c26f76a9d.png?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/8c68e034-020a-4513-9567-574c26f76a9d.png">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/8c68e034-020a-4513-9567-574c26f76a9d.png?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/8c68e034-020a-4513-9567-574c26f76a9d.png"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>Ategon</span>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@nibblebit" href="/u/nibblebit">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/31de4d67-90fd-43cd-9266-d902c14237fd.png?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/31de4d67-90fd-43cd-9266-d902c14237fd.png">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/31de4d67-90fd-43cd-9266-d902c14237fd.png?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/31de4d67-90fd-43cd-9266-d902c14237fd.png"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>@nibblebit</span>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@snaggen" href="/u/snaggen">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/7fc56aab-5618-4dfb-abb1-0a35bd0d79df.jpeg?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/7fc56aab-5618-4dfb-abb1-0a35bd0d79df.jpeg">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/7fc56aab-5618-4dfb-abb1-0a35bd0d79df.jpeg?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/7fc56aab-5618-4dfb-abb1-0a35bd0d79df.jpeg"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>@snaggen</span>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@bugsmith" href="/u/bugsmith">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/a76b152f-42f1-44c3-a310-f29888c08407.jpeg?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/a76b152f-42f1-44c3-a310-f29888c08407.jpeg">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/a76b152f-42f1-44c3-a310-f29888c08407.jpeg?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/a76b152f-42f1-44c3-a310-f29888c08407.jpeg"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>bugsmith</span>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@UlrikHD" href="/u/UlrikHD">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/2f854064-277e-4bd3-87b1-3ab740bebd2c.jpeg?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/2f854064-277e-4bd3-87b1-3ab740bebd2c.jpeg">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/2f854064-277e-4bd3-87b1-3ab740bebd2c.jpeg?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/2f854064-277e-4bd3-87b1-3ab740bebd2c.jpeg"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>@UlrikHD</span>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@recursive_recursion" href="/u/recursive_recursion">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/b58839d3-c738-4d27-a97b-f9fcfd5c8bbe.jpeg?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/b58839d3-c738-4d27-a97b-f9fcfd5c8bbe.jpeg">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/b58839d3-c738-4d27-a97b-f9fcfd5c8bbe.jpeg?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/b58839d3-c738-4d27-a97b-f9fcfd5c8bbe.jpeg"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>recursive_recursion [they/them]</span>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@Octavia" href="/u/Octavia">
+                                                        <picture>
+                                                            <source srcset="/static/68330f7/assets/icons/icon-96x96.png"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="/static/68330f7/assets/icons/icon-96x96.png">
+                                                            <source srcset="/static/68330f7/assets/icons/icon-96x96.png"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="/static/68330f7/assets/icons/icon-96x96.png" alt=""
+                                                                title="" loading="lazy">
+                                                        </picture><span>@Octavia</span>
+                                                    </a></li>
+                                                <li class="list-inline-item"><a
+                                                        class="person-listing d-inline-flex align-items-baseline text-info"
+                                                        title="@Automod" href="/u/Automod">
+                                                        <picture>
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/3873f1b1-4bc0-4d50-8b26-6aa757193111.png?format=webp&amp;thumbnail=96"
+                                                                type="image/webp">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/3873f1b1-4bc0-4d50-8b26-6aa757193111.png">
+                                                            <source
+                                                                srcset="https://programming.dev/pictrs/image/3873f1b1-4bc0-4d50-8b26-6aa757193111.png?format=jpg&amp;thumbnail=96"
+                                                                type="image/jpeg"><img
+                                                                class="overflow-hidden pictrs-image object-fit-cover img-icon me-1"
+                                                                src="https://programming.dev/pictrs/image/3873f1b1-4bc0-4d50-8b26-6aa757193111.png"
+                                                                alt="" title="" loading="lazy">
+                                                        </picture><span>@Automod</span>
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </aside>-->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

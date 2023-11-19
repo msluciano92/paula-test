@@ -1,0 +1,347 @@
+openapi: 3.0.2
+info:
+  version: 1.0.0
+  title: PDClone API
+  description: "Esta es la documentación OPENAPI de nuestra aplicación web **PDClone** desplegada en <https://fib-asw-wotapi.fly.dev/>. <br>Todas las operaciones son ejecutables. Las operaciones que requieran de autorización deberán tener el token de autorización del usuario que se obtiene al registrarse en la web."
+servers:
+  - url: 'https://fib-asw-wotapi.fly.dev/'
+paths:
+  /communities:
+    get:
+      tags:
+      - Comunidades
+      summary: Devuelve todas las comunidades
+      operationId: getAllCommunities
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Community'
+    post:
+      tags:
+      - Comunidades
+      summary: Añade una comunidad al conjunto de comunidades
+      operationId: addCommunity
+      requestBody:
+        description: Indica el ID, nombre, avatar y banner de la nueva comunidad
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - ID
+              type: object
+              properties:
+                ID:
+                  type: string
+                  minLength: 1
+                  maxLength: 280
+                  example: '1'
+                nombre:
+                  type: string
+                  maxLength: 280
+                  example: 'Nombre'
+                avatar:
+                  type: string
+                  format: binary  
+                banner:
+                  type: string
+                  format: binary   
+        required: true
+      responses:
+        201:
+          description: Comunidad creada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Community'
+        400:
+          description: 'Error: Bad Request'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                errorExample:
+                  $ref: '#/components/examples/error400'  
+        409:
+          description: 'Error: Conflict'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                errorExample:
+                  $ref: '#/components/examples/error409Community'           
+  
+  /communities/{communityId}:
+    get:
+      tags:
+      - Comunidades
+      summary: Devuelve una sola comunidad
+      operationId: getCommunity
+      parameters:
+      - name: communityId
+        in: path
+        description: ID de la comunidad a devolver
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Community'
+        404:
+          description: 'Error: Not Found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                errorExample:
+                  $ref: '#/components/examples/error404Community'
+  /users/{username}:
+    get:
+      tags:
+      - Usuarios
+      summary: Devuelve un solo usuario
+      operationId: getUser
+      parameters:
+      - name: username
+        in: path
+        description: Nombre de usuario del usuario a devolver
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: 'Error: Not Found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                errorExample:
+                  $ref: '#/components/examples/error404User'  
+    put:
+      tags:
+        - Usuarios
+      summary: Edita un usuario existente con los nuevos parámetros 
+      operationId: updateUser
+      parameters:
+      - name: username
+        in: path
+        description: Nombre de usuario del usuario a editar
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Edita un usuario existente
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - token
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: 'dnqicnewicdnwe9nqk'
+                nombre:
+                  type: string
+                  maxLength: 280
+                  example: 'Nombre'
+                descripcion:
+                  type: string
+                  maxLength: 280
+                  example: 'Mi descripcion'  
+                avatar:
+                  type: string
+                  format: binary  
+                banner:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        200:
+            description: successful operation
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/User'
+        400:
+          description: 'Error: Bad Request'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                errorExample:
+                  $ref: '#/components/examples/error400' 
+        401:
+          description: 'Error: Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                errorExample:
+                  $ref: '#/components/examples/error401'
+        403:
+          description: 'Error: Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResult'
+              examples:
+                errorExample:
+                  $ref: '#/components/examples/error403'          
+        404:
+            description: 'Error: Not Found'
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/ErrorResult'
+                examples:
+                  errorExample:
+                    $ref: '#/components/examples/error404User'
+      security:
+      - ApiKeyAuth: []              
+  
+components:
+  schemas:
+    Community:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '2'
+        name:
+          type: string
+          minLength: 1
+          example: 'Community name'
+        banner:
+          type: string
+          format: url
+          example: 'https://falta-url.fly.dev/banner.jpg'
+        avatar:
+          type: string
+          format: url
+          example: 'https://falta-url.fly.dev/avatar.jpg'
+        subscribers_id:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 3, 4] 
+        posts_id:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 2, 3] 
+        comments_id:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 2, 3]  
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 2
+        username:
+          type: string
+          minLength: 1
+          example: 'willSmith'
+        name:
+          type: string
+          minLength: 1
+          example: 'Will Smith'
+        banner:
+          type: string
+          format: url
+          example: 'https://falta-url.fly.dev/banner.jpg'
+        avatar:
+          type: string
+          format: url
+          example: 'https://falta-url.fly.dev/avatar.jpg'
+        created_date:
+          type: string
+          format: date-time
+        description:
+          type: string
+          example: 'This is my description'
+        posts_id:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 2, 3] 
+        comments_id:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 2, 3]
+        postsSaved_id:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 2, 3] 
+        commentsSaved_id:
+          type: array
+          items:
+            type: integer
+            format: int64
+          example: [1, 2, 3]   
+    ErrorResult:
+      type: object
+      properties:
+        message: 
+          type: string
+          example: 'Content is too long (maximum is 280 characters)'
+      required:
+        - message
+        
+  examples:
+    error400:
+      value:
+        message: "Content is too long (maximum is 280 characters)"  
+    error401:
+      value:
+        message: "You provided no token"  
+    error403:
+      value:
+        message: "You provided an invalid token"
+    error404Community:
+      value:
+        message: "There is no community with 'id'=1" 
+    error404User:
+      value:
+        message: "There is no user with 'username'=willSmith"
+    error409Community:
+      value:
+        message: "Already exists a community with 'id'=1"    
+        
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

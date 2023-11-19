@@ -1,0 +1,276 @@
+{% extends "navigation.html" %}
+{% block content %}
+    <div class="mt-4 p-0 fl-1">
+        <div tabindex="-1">
+            <div class="community container-lg">
+                <div class="row">
+                    <main class="col-12 col-md-8 col-lg-9">
+                        <div class="mb-2">
+                            <div class="banner-icon-header position-relative mb-2">
+                                {% if showBanner %}
+                                <img class="overflow-hidden pictrs-image img-fluid banner img-expanded slight-radius" src="{{community.banner.url}}" alt="Community banner" title="" loading="lazy">
+                                {% endif %}
+                                {% if showAvatar %}
+                                <img class="overflow-hidden pictrs-image img-expanded slight-radius ms-2 mt-1 mb-0 rounded-circle object-fit-cover avatar-overlay avatar-pushup" src="{{community.avatar.url}}" alt="Community avatar" title="" loading="lazy">
+                                {% endif %}
+                            </div>
+                            {% if showName %}
+                            <h1 class="h4 mb-0 overflow-wrap-anywhere">{{community.name}}</h1>
+                            {% endif %}
+                            <a class="community-link text-muted" title="!{{community.id}}" href="/c/{{community.id}}/posts/{{order}}" rel="noopener nofollow"><span class="overflow-wrap-anywhere">!{{community.id}}</span>
+                            </a>
+                        </div>
+                        <div class="d-block d-md-none">
+                            <button class="btn btn-secondary d-inline-block mb-2 me-3">Barra lateral <svg class="icon icon-inline"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-plus-square"></use><div class="visually-hidden"><title>plus-square</title></div></svg></button>
+                        </div>
+                        <div class="mb-3"><span class="me-3">
+                            <div class="data-type-select btn-group btn-group-toggle flex-wrap" role="group">
+                                {% if showPosts %}
+                                <a class="btn btn-outline-secondary active" id="listing-type-input-u1oLql0z3Z8XWd1tQ8Qw-posts" href="/c/{{community.id}}/posts/{{order}}">Publicaciones</a>
+                                <a class="btn btn-outline-secondary" id="listing-type-input-u1oLql0z3Z8XWd1tQ8Qw-comments" href="/c/{{community.id}}/comments/{{order}}">Comentarios</a>
+                                {% else %}
+                                <a class="btn btn-outline-secondary" id="listing-type-input-u1oLql0z3Z8XWd1tQ8Qw-posts" href="/c/{{community.id}}/posts/{{order}}">Publicaciones</a>
+                                <a class="btn btn-outline-secondary active" id="listing-type-input-u1oLql0z3Z8XWd1tQ8Qw-comments" href="/c/{{community.id}}/comments/{{order}}">Comentarios</a>
+                                {% endif %}
+                            </div></span>
+                                    <div class="listing-type-select btn-group btn-group-toggle flex-wrap" role="group">
+                                        {% if showPosts %}
+                                        <a href="/c/{{community.id}}/posts/-created_date" class="btn btn-outline-secondary">Nuevo</a>
+                                        <a href="/c/{{community.id}}/posts/created_date" class="btn btn-outline-secondary">Antiguo</a>
+                                        <a href="/c/{{community.id}}/posts/-points" class="btn btn-outline-secondary">Mejor</a>
+                                        <!--<a href="{/u/{{user.username}}/resumen/coments" class="btn btn-outline-secondary">+Comentado</a>-->
+                                        {% else %}
+                                        <a href="/c/{{community.id}}/comments/-created_date" class="btn btn-outline-secondary">Nuevo</a>
+                                        <a href="/c/{{community.id}}/comments/created_date" class="btn btn-outline-secondary">Antiguo</a>
+                                        <a href="/c/{{community.id}}/comments/-points" class="btn btn-outline-secondary">Mejor</a>
+                                        <!--<a href="{/u/{{user.username}}/resumen/coments" class="btn btn-outline-secondary">+Comentado</a>-->
+                                        {% endif %}
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        {% if showPosts %}
+                        <div class="post-listings">
+                            {% for d in data %}
+                                <div class="post-listing mt-2">
+                                    <div class="d-none d-sm-block">
+                                        <article class="row post-container">
+                                            <div class="col flex-grow-0">
+                                                <div class="vote-bar small text-center">
+                                                    <button class="btn-animate btn btn-link p-0 text-muted" type="button" data-tippy-content="Voto positivo" aria-label="Voto positivo" aria-pressed="false">
+                                                        <svg class="icon upvote"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-up1"></use>
+                                                            <div class="visually-hidden"><title>arrow-up1</title></div>
+                                                        </svg>
+                                                        <a href="{% url 'upvote' d.id 'posts'%}">Up</a>
+                                                    </button>
+                                                    <div class="unselectable pointer text-muted post-score" data-tippy-content="6 puntos • 8 votos positivos • 2 votos negativos">{{d.points}}</div>
+                                                    <button class="btn-animate btn btn-link p-0 text-muted" type="button" data-tippy-content="Voto negativo" aria-label="Voto negativo" aria-pressed="false">
+                                                        <svg class="icon downvote"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-arrow-down1"></use>
+                                                            <div class="visually-hidden"><title>arrow-down1</title></div>
+                                                        </svg>
+                                                        <a href="{% url 'downvote' d.id 'posts'%}">Down</a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col flex-grow-1">
+                                                <article class="row">
+                                                    <div class="col flex-grow-0 px-0"><div>
+                                                        <a class="text-body" title="Comentarios" href="/post/4373842">
+                                                            <div class="thumbnail rounded bg-light d-flex justify-content-center">
+                                                                <svg class="icon d-flex align-items-center"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-message-square"></use>
+                                                                    <div class="visually-hidden"><title>message-square</title></div>
+                                                                </svg>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col flex-grow-1">
+                                                    <div class="post-title">
+                                                        <h1 class="h5 d-inline text-break">
+                                                            <a class="d-inline link-dark" title="Comentarios" href="{% url 'single_post' d.id %}">
+                                                                <span class="d-inline">{{d.title}}</span>
+                                                            </a>
+                                                        </h1>
+                                                        <button class="btn btn-sm btn-link link-dark link-opacity-75 link-opacity-100-hover py-0 align-baseline" type="button">
+                                                            <svg class="icon icon-inline"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-plus-square"></use>
+                                                                <div class="visually-hidden"><title>plus-square</title></div>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                    <div class="small mb-1 mb-md-0">
+                                                        <a class="person-listing d-inline-flex align-items-baseline text-info" title="@{{d.author.username}}" href="/u/{{d.author.username}}/resumen/-created_date">
+                                                            <picture>
+                                                                {% if d.author.avatar is not None and d.author.avatar %}
+                                                                <img class="overflow-hidden pictrs-image object-fit-cover img-icon me-1" src="{{d.author.avatar.url}}" alt="" title="" loading="lazy">
+                                                                {% endif %}
+                                                            </picture>
+                                                            <span>@{{d.author.username}}</span>
+                                                        </a> a 
+                                                        <a class="community-link " title="!{{d.community.id}}" href="/c/{{d.community.id}}/posts/{{order}}">
+                                                            <picture>
+                                                                {% if d.community.avatar is not None and d.community.avatar %}
+                                                                <img class="overflow-hidden pictrs-image object-fit-cover img-icon me-1" src="{{d.community.avatar.url}}" alt="" title="" loading="lazy">
+                                                                {% endif %}
+                                                            </picture>
+                                                            <span class="overflow-wrap-anywhere">{{d.community.name}}</span>
+                                                        </a> • 
+                                                        <span class="moment-time fst-italic pointer unselectable" data-tippy-content="Creado: sábado, 14 de octubre de 2023 a las 17:47:37 GMT+02:00 Modificado sábado, 14 de octubre de 2023 a las 17:47:54 GMT+02:00">
+                                                            <svg class="icon icon-inline me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-edit-2"></use>
+                                                                <div class="visually-hidden"><title>edit-2</title></div>
+                                                            </svg>hace 2 días
+                                                        </span>
+                                                    </div>
+                                                    <div class="d-flex align-items-center justify-content-start flex-wrap text-muted">
+                                                        <a class="btn btn-link btn-sm text-muted ps-0" title="5 Comentarios" data-tippy-content="5 Comentarios" href="/post/4373842?scrollToComments=true">
+                                                            <svg class="icon me-1 icon-inline"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-message-square"></use>
+                                                                <div class="visually-hidden">
+                                                                    <title>message-square</title>
+                                                                </div>
+                                                            </svg>5
+                                                        </a>
+                                                        <button class="btn btn-sm btn-link btn-animate text-muted py-0" type="button">
+                                                            <svg class="icon icon-inline">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-share"></use>
+                                                                <div class="visually-hidden"><title>share</title></div>
+                                                            </svg>
+                                                        </button>
+                                                        <a class="btn btn-sm btn-link btn-animate text-muted py-0" title="enlace" href="https://iusearchlinux.fyi/post/1627699">
+                                                            <svg class="icon icon-inline"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-fedilink"></use>
+                                                                <div class="visually-hidden"><title>fedilink</title></div>
+                                                            </svg>
+                                                        </a>
+                                                        
+                                                        {% if d.savedBy.exists %}
+                                                            {% for saved_user in d.savedBy.all %}
+                                                                {% if saved_user.username == user.username %}
+                                                                    <a class="btn btn-link btn-animate text-muted btn-sm" title="Save" href="{% url 'savepost' id=d.id %}?next={{request.path}}">
+                                                                        Unsave
+                                                                    </a>                     
+                                                                {% else %}
+                                                                    <a class="btn btn-link btn-animate text-muted btn-sm" title="Save" href="{% url 'savepost' id=d.id %}?next={{request.path}}">
+                                                                        Save
+                                                                    </a> 
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            <a class="btn btn-link btn-animate text-muted btn-sm" title="Save" href="{% url 'savepost' id=d.id %}?next={{request.path}}">
+                                                                Save
+                                                            </a> 
+                                                        {% endif %} 
+                    
+                                                        <div class="dropdown"><button class="btn btn-sm btn-link btn-animate text-muted py-0 dropdown-toggle" data-tippy-content="más" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="advancedButtonsDropdown4373842" aria-label="más">
+                                                            <svg class="icon icon-inline">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-more-vertical"></use>
+                                                                <div class="visually-hidden"><title>more-vertical</title></div>
+                                                            </svg>
+                                                        </button>
+                                                        <ul class="dropdown-menu" id="advancedButtonsDropdown4373842">
+                                                            <li>
+                                                                <button class="btn btn-link btn-sm d-flex align-items-center rounded-0 dropdown-item" aria-label="Mostrar el diálogo del informe">
+                                                                    <svg class="icon me-1 icon-inline">
+                                                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-flag"></use>
+                                                                        <div class="visually-hidden"><title>flag</title></div>
+                                                                    </svg>Crear informe
+                                                                </button>
+                                                            </li>
+                                                            <li>
+                                                                <button class="btn btn-link btn-sm d-flex align-items-center rounded-0 dropdown-item" aria-label="Bloquear usuario">
+                                                                    <svg class="icon me-1 icon-inline"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-slash"></use>
+                                                                        <div class="visually-hidden"><title>slash</title></div>
+                                                                    </svg>Bloquear usuario
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    </div>
+                                </div>
+                                <hr class="my-3">
+                            {% endfor %}
+                            </div>
+                            
+                        {% else %}
+                        <div class="comment-listings">
+                            {% for d in data %}
+                            <div class="comment-listing mt-2">
+                                <div class="d-none d-sm-block">
+                                    <article class="row post-container">
+                                        <div class="col flex-grow-0">
+                                            <div class="vote-bar small text-center"><button id="upvote-btn" class="btn-animate btn btn-link p-0 text-muted"
+                                                    type="button" data-tippy-content="Upvote" aria-label="Upvote" aria-pressed="false" data-comment-id="{{ d.id }}">
+                                                        <img src="/static/upvote.png" width="15" height="15">
+                                                        <div class="visually-hidden">
+                                                            <title>arrow-up1</title>
+                                                        </div>
+                                                    </button>
+                                                <div class="unselectable pointer text-muted post-score"
+                                                    data-tippy-content="{{ d.upvotes }} points • {{ d.upvotes }} Upvotes • {{ d.downvotes }} Downvotes">{{ d.finalvotes }}</div><button
+                                                    id="downvote-btn" class="btn-animate btn btn-link p-0 text-muted" type="button" data-tippy-content="Downvote"
+                                                    aria-label="Downvote" aria-pressed="false" data-comment-id="{{ d.id }}">
+                                                    <img src="/static/downvote.png" width="15" height="15">
+                                                        <div class="visually-hidden">
+                                                            <title>arrow-down1</title>
+                                                        </div>
+                                                    </button>
+                                            </div>
+                                        </div>
+                                        <div class="col flex-grow-1">
+                                            <div class="row">
+                                                <div class="ms-2">
+                                                    <div class="d-flex flex-wrap align-items-center text-muted small">
+                                                            </svg></button><a class="person-listing d-inline-flex align-items-baseline text-info" title="{{ comment.author }}"
+                                                            href="/u/{{ d.author.username }}/resumen">
+                                                            <span>@{{ d.author.username }}</span>
+                                                        </a><span class="mx-1">to</span>
+                                                        <a class="community-link " title="!{{d.post.community.name}}" href="/c/{{d.post.community.id}}/posts/{{order}}">
+                                                            <picture>
+                                                                {% if d.post.community.avatar is not None and d.post.community.avatar %}
+                                                                <img src="{{d.post.community.avatar.url}}" class="overflow-hidden pictrs-image object-fit-cover img-icon me-1">
+                                                                {% endif %}
+                                                            </picture><span class="overflow-wrap-anywhere">{{d.post.community.name}}</span>
+                                                        </a><span class="mx-2">•</span><a class="me-2" href="/post/{{ d.post.id }}">{{ d.post.title }}</a><a class="btn btn-link btn-animate text-muted btn-sm" title="Show context"
+                                                            href="/comment/4465788"><svg class="icon icon-inline">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-link"></use>
+                                                                <div class="visually-hidden">
+                                                                    <title>link</title>
+                                                                </div>
+                                                            </svg></a><a class="btn btn-link btn-animate text-muted btn-sm" title="Show context"
+                                                            href="https://programming.dev/comment/4465788"><svg class="icon icon-inline">
+                                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-fedilink"></use>
+                                                                <div class="visually-hidden">
+                                                                    <title>fedilink</title>
+                                                                </div>
+                                                            </svg></a>
+                                                        <span class="moment-time pointer unselectable"
+                                                        data-tippy-content="Thursday, November 2nd, 2023 at 10:26:22 PM GMT+01:00">11 minutes ago</span></span>
+                                                        <a class="btn btn-link btn-animate text-muted btn-sm" title="Save" href="{% url 'savecomment' id=d.id %}?next={{request.path}}">
+                                                            <img src="/static/save.png" width="15" height="15">
+                                                        </a>
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        <div class="md-div">
+                                                            <p>{{ d.body }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="comment-bottom-btns d-flex justify-content-between justify-content-lg-start flex-wrap text-muted fw-bold">
+                                                        <a class="btn btn-link btn-animate text-muted" title="Show context" href="/comment/4465788">
+                                                                <img src="/static/link.png" width="10" height="10">
+                                                            </svg></a>
+                                                                <div class="visually-hidden">
+                                                                    <title>fedilink</title>
+                                                                </div>
+                                                            </svg></a>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+{% endblock %}

@@ -1,0 +1,191 @@
+<html lang="en">
+    <head>
+  
+    <!-- A remote debugging utility for mobile -->
+    
+  
+    <!-- Custom injected script -->
+    
+  
+    <title data-inferno-helmet="true">Create Post - programming.dev</title>
+    <meta data-inferno-helmet="true" property="title" content="Create Post - programming.dev"><meta data-inferno-helmet="true" property="og:title" content="Create Post - programming.dev"><meta data-inferno-helmet="true" property="twitter:title" content="Create Post - programming.dev"><meta data-inferno-helmet="true" property="og:url" content="http://programming.dev/create_post"><meta data-inferno-helmet="true" property="twitter:url" content="http://programming.dev/create_post"><meta data-inferno-helmet="true" property="og:type" content="website"><meta data-inferno-helmet="true" property="twitter:card" content="summary_large_image">
+  
+    <!-- Required meta tags -->
+    <meta name="Description" content="Lemmy">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link
+       id="favicon"
+       rel="shortcut icon"
+       type="image/x-icon"
+       href=https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png
+     />
+  
+    <!-- Web app manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href=/static/68330f7/assets/icons/apple-touch-icon.png />
+    <link rel="apple-touch-startup-image" href=/static/68330f7/assets/icons/apple-touch-icon.png />
+  
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="../../static/styles2.css" />
+  
+    <!-- Current theme and more -->
+    <link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="../../static/litely.css" id="default-light" media="(prefers-color-scheme: light)">
+    <link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="../../static/darkly.css" id="default-dark" media="(prefers-color-scheme: no-preference), (prefers-color-scheme: dark)">
+
+    
+    </head>
+
+<!--
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/create_posts.css">
+    <link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="static/litely.css" id="default-light" media="(prefers-color-scheme: light)"><link data-inferno-helmet="true" rel="stylesheet" type="text/css" href="static/darkly.css" id="default-dark" media="(prefers-color-scheme: no-preference), (prefers-color-scheme: dark)"><link data-inferno-helmet="true" rel="canonical" href="https://programming.dev/">
+</head>
+-->
+    {% load bootstrap5 %}
+    {% bootstrap_javascript %} 
+<body class="style-0">
+    <div class="style-2">
+        {% load socialaccount %}
+        <div class="style-3" data-bs-theme="light"><button class="style-4" type="button">Jump to content</button>
+            <div class="style-5">
+                <nav class="style-6"><a class="style-7" aria-current="true" title="A collection of programming communities" href="/">
+                        <picture class="style-8">
+                            <source srcset="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png?format=webp&amp;thumbnail=96" type="image/webp" class="style-9" />
+                            <source srcset="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png" class="style-10" />
+                            <source srcset="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png?format=jpg&amp;thumbnail=96" type="image/jpeg" class="style-11" /><img class="style-12" src="https://programming.dev/pictrs/image/1e947440-0f0d-4768-ba4b-1480551e7cc9.png" alt="" title="" loading="lazy" />
+                        </picture>programming.dev
+                    </a>
+                    <ul class="style-13">
+                        <li class="style-14"><a class="style-15" title="0 Unread Messages" href="/inbox"><svg class="style-16">
+                                    <use xlink:href="/static/68330f7/assets/symbols.svg#icon-bell" class="style-17"></use>
+                                    <div class="style-18">
+                                        <title class="style-19">bell</title>
+                                    </div>
+                                </svg></a></li>
+                    </ul><button class="style-20" type="button" aria-label="menu" data-tippy-content="Expand here" data-bs-toggle="collapse" data-bs-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false"><svg class="style-21">
+                            <use xlink:href="/static/68330f7/assets/symbols.svg#icon-menu" class="style-22"></use>
+                            <div class="style-23">
+                                <title class="style-24">menu</title>
+                            </div>
+                        </svg></button>
+                    <div class="style-25">
+                        <ul class="style-26">
+                            <li class="style-27"><a class="style-28" title="Communities" href="/communities/local">Comunidades</a></li>
+                            <li class="style-29"><a class="style-30" title="Create Post" href="" aria-current="true">Crear publicación</a></li>
+                            <li class="style-31"><a class="style-32" title="Support Lemmy" href="https://join-lemmy.org/donate"><svg class="style-33">
+                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-heart" class="style-34"></use>
+                                        <div class="style-35">
+                                            <title class="style-36">heart</title>
+                                        </div>
+                                    </svg><span class="style-37">Support Lemmy</span></a></li>
+                        </ul>
+                        <ul class="style-38">
+                            <li class="style-39"><a class="style-40" title="Search" href="/search"><svg class="style-41">
+                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-search" class="style-42"></use>
+                                        <div class="style-43">
+                                            <title class="style-44">search</title>
+                                        </div>
+                                    </svg><span class="style-45">Search</span></a></li>
+                            <li class="style-46"><a class="style-47" title="0 Unread Messages" href="/inbox"><svg class="style-48">
+                                        <use xlink:href="/static/68330f7/assets/symbols.svg#icon-bell" class="style-49"></use>
+                                        <div class="style-50">
+                                            <title class="style-51">bell</title>
+                                        </div>
+                                    </svg><span class="style-52">0 Unread Messages</span></a></li>
+                                    {% if user.is_authenticated %}
+                                    <button class="btn dropdown-toggle" type="button" aria-expanded="false" data-bs-toggle="dropdown">{{user.username}}</button>
+                                    <ul class="dropdown-menu" style="min-width:fit-content;">
+                                        <li><a class="dropdown-item px-2" title="Perfil" href="/u/{{user.username}}"><svg class="icon me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-user"></use><div class="visually-hidden"><title>user</title></div></svg>Perfil</a></li>
+                                        <li><a class="dropdown-item px-2" title="Configuración" href="/settings"><svg class="icon me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-settings"></use><div class="visually-hidden"><title>settings</title></div></svg>Configuración</a></li>
+                                        <li><a class="dropdown-item px-2" title="Cerrar sesión" href="/logout"><svg class="icon me-1"><use xlink:href="/static/68330f7/assets/symbols.svg#icon-log-out"></use><div class="visually-hidden"><title>log-out</title></div></svg>Cerrar sesión</a></li>
+                                    </ul>
+                                     {% else %}
+                                    <a href="{% provider_login_url 'google' action='reauthenticate' %}">Sign in with Google</a>
+                                    {% endif %}
+                           <!-- <li class="style-53"><button class="style-54" type="button" aria-expanded="false" data-bs-toggle="dropdown">carla</button>
+                                <ul class="style-55">
+                                    <li class="style-56"><a class="style-57" title="Profile" href="/u/carla"><svg class="style-58">
+                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-user" class="style-59"></use>
+                                                <div class="style-60">
+                                                    <title class="style-61">user</title>
+                                                </div>
+                                            </svg>Profile</a></li>
+                                    <li class="style-62"><a class="style-63" title="Settings" href="/settings"><svg class="style-64">
+                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-settings" class="style-65"></use>
+                                                <div class="style-66">
+                                                    <title class="style-67">settings</title>
+                                                </div>
+                                            </svg>Settings</a></li>-->
+                                    <li class="style-68">
+                                        <hr class="style-69" />
+                                    </li>
+                                    <!--<li class="style-70"><button class="style-71"><svg class="style-72">
+                                                <use xlink:href="/static/68330f7/assets/symbols.svg#icon-log-out" class="style-73"></use>
+                                                <div class="style-74">
+                                                    <title class="style-75">log-out</title>
+                                                </div>
+                                            </svg>Logout</button></li>-->
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="style-76">
+                <div tabindex="-1" class="style-77">
+                    <div class="style-78">
+                        <div class="style-79">
+                            <div class="style-80">
+                                <h1 class="style-81">Create Post</h1>
+                                <form class="style-82"  method="post" action="{% url 'create_posts' %}">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <div class="style-241">
+                                        <div class="style-242"><input class="style-243" type="submit" value="Crear publicación"></div>
+                                    </div>
+                                    <!--
+                                    <div class="style-83"><label class="style-84" for="post-url">URL</label>
+                                        <div class="style-85"><input class="style-86" type="url" /></div>
+                                    </div>
+                                    <div class="style-95"><label class="style-96" for="post-title">Title</label>
+                                        <div class="style-97"><textarea class="style-98" required="" rows="1" minlength="3" maxlength="200"></textarea></div>
+                                    </div>
+                                    <div class="style-99"><label class="style-100">Body</label>
+                                        <div class="style-97"><textarea class="style-98-vis" required="" rows="4" minlength="3" maxlength="200"></textarea></div>
+                                    </div>
+                                    <div class="style-193"><label class="style-194" for="post-community">Community</label>
+                                        <div class="style-97"><textarea class="style-98" required="" rows="1" minlength="3" maxlength="200"></textarea></div>
+                                    </div>
+                                    -->
+                                </form>
+                                {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="style-244">
+                <div class="style-245">
+                    <ul class="style-246">
+                        <li class="style-247"><span class="style-248">BE: 0.18.5</span></li>
+                        <li class="style-249"><a class="style-250" href="/modlog">Modlog</a></li>
+                        <li class="style-251"><a class="style-252" href="/legal">Legal</a></li>
+                        <li class="style-253"><a class="style-254" href="/instances">Instances</a></li>
+                        <li class="style-255"><a class="style-256" href="https://join-lemmy.org/docs/en/index.html">Docs</a></li>
+                        <li class="style-257"><a class="style-258" href="https://github.com/LemmyNet">Code</a></li>
+                        <li class="style-259"><a class="style-260" href="https://join-lemmy.org">join-lemmy.org</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </div> <iframe height="1" width="1" class="style-261"></iframe>
+</body>
+
+</html>
