@@ -27,7 +27,7 @@ SECRET_KEY = "000"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["pdcloneasw.herokuapp.com", "127.0.0.1"] 
+ALLOWED_HOSTS = ["pdcloneasw.herokuapp.com", "127.0.0.1", "localhost", "test-paula-523f47ae1594.herokuapp.com"] 
 
 
 # Application definition
