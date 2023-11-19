@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "000"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["pdcloneasw.herokuapp.com", "127.0.0.1", "localhost", "test-paula-523f47ae1594.herokuapp.com"] 
 
